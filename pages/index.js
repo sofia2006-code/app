@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.container}>
 
 
-      <h1>aprendiendo esta mierda</h1>
+      <h1 class="mb-1 text-xl font-bold">aprendiendo esta mierda</h1>
     </div>
   )
 }
