@@ -13,9 +13,20 @@ export default function Home() {
   const [longBreak, setLongBreak] = useState(40);
   const[seconds, setSeconds] = useState(0);
   const[stage, setStage] = useState(0);
+  const [consumedSecond, setConsumeSec] = useState(0)
   const [ticking, setTicking] = useState(false);
 
   const switchStage = (index) =>{
+    const isYes = consumedSecond && stage !== index 
+      // ? confirm("Cambiar de estado")
+      // : false;
+    if(isYes){
+      reset();
+      setStage(index);
+    }
+    else if(!consumedSecond) {
+      setStage(index);
+    }
     setStage(index);
   }
 
@@ -38,12 +49,20 @@ export default function Home() {
 
     return updateStage[stage];
   }
+
+  const reset =() =>{
+    setTicking(false);
+    setPomodoro(25);
+    setLongBreak(10);
+    setShortBreak(5);
+    setSeconds(0);
+  }
   const clockTicking =()=>{
     const minutes =getTickingTime();
     const setMinutes = updateminute();
 
     if (minutes === 0 && seconds === 0){
-      alert("Time up")
+      reset();
     }
     else if (seconds ===0){
       setMinutes((minute) => minute -1); 
@@ -56,6 +75,7 @@ export default function Home() {
   useEffect(() =>{
     const timer = setInterval(() => {
       if(ticking){
+        setConsumeSec(value => value + 1)
         clockTicking();
       }
     }, 1000)
