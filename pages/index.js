@@ -1,13 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
+      <div>
+      <h1 class="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+      <Link href='/configuracion'> configuracion</Link>
 
+        <h2 class="underline decoration-sky-500">aprendiendo esta mierda</h2>
 
-      <h1 class="mb-1 text-xl font-bold">aprendiendo esta mierda</h1>
-    </div>
+        
+      </div>
+
+    </>
+    
   )
 }
