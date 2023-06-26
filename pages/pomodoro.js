@@ -5,7 +5,7 @@ import Navigations from '../components/navigations'
 import Timer from '../components/timer'
 import styles from '../styles/Home.module.css'
 import Alarm from '../components/alarm'
-
+import PomoSettings from '../components/pomosettings'
 //import styles from '../styles/globals.css'
 
 export default function Home() {
@@ -126,8 +126,10 @@ export default function Home() {
          ticking={ticking}
          startTimer={startTimer}
          isTimeUp={isTimeUp}
-         muteAlarm={muteAlarm}/>
+         muteAlarm={muteAlarm}
+         reset={reset}/>
          <Alarm ref={alarmRef}/>
+         <PomoSettings />
       </div>
     </div>
   )
