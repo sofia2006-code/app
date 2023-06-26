@@ -10,11 +10,17 @@ export default function Home() {
       <Link href='/configuracion'> configuracion</Link>
 
         <h2 class="underline decoration-sky-500">aprendiendo esta mierda</h2>
+      </div>
 
-        
+      <div>
+        <form method="POST" action="/task">
+            <button>send</button>
+        </form>
+
       </div>
 
     </>
     
   )
 }
+
