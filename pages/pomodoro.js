@@ -16,6 +16,7 @@ export default function Home() {
   const[stage, setStage] = useState(0);
   const [consumedSecond, setConsumeSec] = useState(0)
   const [ticking, setTicking] = useState(false);
+  const [isTimeUp, setIsTimeUp]= useState(false);
 
   const alarmRef = useRef();
 
@@ -67,7 +68,7 @@ export default function Home() {
   const timeUp = () =>{
     reset();
     setIsTimeUp(true);
-    alarmRef.current.play
+    alarmRef.current.play();
   }
   const clockTicking =()=>{
     const minutes =getTickingTime();
@@ -75,7 +76,7 @@ export default function Home() {
 
     // TIME UP
     if (minutes === 0 && seconds === 0){
-      reset();
+      timeUp();
     }
     else if (seconds ===0){
       setMinutes((minute) => minute -1); 
@@ -84,6 +85,17 @@ export default function Home() {
     else{
       setSeconds((second) => second - 1);
     }
+  }
+
+  const muteAlarm = () =>{
+    alarmRef.current.pause();
+    alarmRef.current.currentTime = 0; //reinicia el audio
+  };
+
+  const startTimer = () =>{
+    setIsTimeUp(false);
+    muteAlarm();
+    setTicking((ticking) =>!ticking) //que deje de correr
   }
   useEffect(() =>{
 
@@ -112,7 +124,9 @@ export default function Home() {
          getTickingTime={getTickingTime}
          seconds={seconds}
          ticking={ticking}
-         setTicking={setTicking}/>
+         startTimer={startTimer}
+         isTimeUp={isTimeUp}
+         muteAlarm={muteAlarm}/>
          <Alarm ref={alarmRef}/>
       </div>
     </div>

@@ -1,6 +1,15 @@
 import React from 'react'
+import { FiBellOff } from "react-icons/fi";
 
-export default function Timer({stage, switchStage, getTickingTime, seconds, ticking, setTicking}) {
+export default function Timer({
+  stage, 
+  switchStage, 
+  getTickingTime, 
+  seconds, 
+  ticking, 
+  startTimer,
+  isTimeUp,
+  muteAlarm}) {
   const options = ["Pomodoro", "Short Break", "Long Break"]
   return (
       <div className="w-10/12 mx-auto pt-5 text-white flex flex-col justify-center intems-center mt-10">
@@ -25,11 +34,19 @@ export default function Timer({stage, switchStage, getTickingTime, seconds, tick
           </h1>
         </div>
         <div className="flex gap-2 items-center flex-col justify-center">
-          <button className="px-16 py-2 text-2xl rounded-md bg-white text-blue-500 uppercase font-bold" onClick={()=>setTicking
-            ((ticking) =>!ticking)}>
+          <button className="px-16 py-2 text-2xl rounded-md bg-white text-blue-500 uppercase font-bold" 
+          onClick={startTimer}>
             {ticking? "Stop":"Start"} 
             {/*  if ticking, cambia el titulo */}
           </button>
+
+          {isTimeUp && (
+            <FiBellOff
+              className="text-3xl text-white cursor-pointer"
+              onClick={()=> startTimer()} 
+              //cuando tocas el boton va a muteAlarm//
+            />
+          )}
         </div>
           
       </div>
