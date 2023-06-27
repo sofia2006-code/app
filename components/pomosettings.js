@@ -2,8 +2,31 @@
 import React from 'react'
 import { FiX } from "react-icons/fi";
 
+function PomoSettings(
+  pomodoroRef, 
+  shortBreakRef, 
+  longBreakRef,
 
-export default function PomoSettings() {
+  ) {
+  const options = [
+    {
+      value: "Pomodoro",
+      ref: pomodoroRef,
+      defaultValue: 25,
+    },
+
+    {
+      value: "Short Break",
+      ref: shortBreakRef,
+      defaultValue: 5,
+    },
+
+    {
+      value: "Long Break",
+      ref: longBreakRef,
+      defaultValue: 10,
+    }
+  ]
   return (
     <>
       <div className="absolute h-full w-full left-0 top-0 bg-black bg-opacity-30">
@@ -14,11 +37,32 @@ export default function PomoSettings() {
         >
           <div className="text-gray-400 flex justify-between items-center">
             <h1 className="uppercase font-bold tracking-wider">Time setting</h1>
-            <FiX/>
+            <FiX className="text-2xl"/>
           </div>
-            
-        </div> 
+          {/* linea simple */}
+          <div className="h-1 w-fill bg-gray-400 mt-5 mb-5"></div>
+          <div className="flex gap-5">
+            {options.map((input, index)=>{
+              return <div>
+                <h1 className="text-gray-400 text-small">{input.value}</h1>
+                <input
+                    // default el de arriba
+                    defaultChecked={input.defaultValue}
+                    type="number"
+                    className="w-full bg-gray-400 bg-opacity-30 py-2 rounded outline-none
+                    text-center"
+                    ref={input.ref}
+                /> 
+              </div>
+            })}
+          </div>
+          <button classname="bg-blue-600 uppercase w-full mt-5 text-white rounded">
+            Save
+          </button>
+        </div>
       </div>
     </>
   )
 }
+
+export default React.forwardRef(PomoSettings);
