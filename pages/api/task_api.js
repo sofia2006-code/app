@@ -1,4 +1,39 @@
-//import {pool} from '../../database de thiago'
+import { tasks } from '../../../components/TasksForm'
+
+export default function handler(req, res) {
+    if (req.method === 'GET') {
+        res.status(200).json(tasks)        
+    }
+    else if (req.method === 'POST') {
+        const task = req.body.task
+        const newTask = {
+            id: Date.now(), 
+            text: task
+        }
+        tasks.push(newTask)
+        res.status(201).json(newTask)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import {pool} from '../../database de thiago'
 
 export default async function handler(req, res) {
     
@@ -14,9 +49,6 @@ export default async function handler(req, res) {
             })
 
             console.log(result);
-            return res.status(200).json('creating a task') */
-
-
+            return res.status(200).json('creating a task') 
     }
-
-}
+}*/
