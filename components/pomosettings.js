@@ -1,13 +1,14 @@
 
 import React from 'react'
 import { FiX } from "react-icons/fi";
+import {useRef} from 'react'
 
-function PomoSettings(
-  pomodoroRef, 
-  shortBreakRef, 
-  longBreakRef,
+function PomoSettings() {
 
-  ) {
+  const pomodoroRef = useRef(null);
+  const shortBreakRef = useRef(null);
+  const longBreakRef = useRef(null);
+
   const options = [
     {
       value: "Pomodoro",
@@ -27,6 +28,7 @@ function PomoSettings(
       defaultValue: 10,
     }
   ]
+
   return (
     <>
       <div className="absolute h-full w-full left-0 top-0 bg-black bg-opacity-30">
@@ -43,20 +45,22 @@ function PomoSettings(
           <div className="h-1 w-fill bg-gray-400 mt-5 mb-5"></div>
           <div className="flex gap-5">
             {options.map((input, index)=>{
+              <div key={index}>
               return <div>
                 <h1 className="text-gray-400 text-small">{input.value}</h1>
                 <input
                     // default el de arriba
-                    defaultChecked={input.defaultValue}
+                    defaultValue={input.defaultValue}
                     type="number"
                     className="w-full bg-gray-400 bg-opacity-30 py-2 rounded outline-none
                     text-center"
                     ref={input.ref}
                 /> 
+                </div>
               </div>
             })}
           </div>
-          <button classname="bg-blue-600 uppercase w-full mt-5 text-white rounded">
+          <button className="bg-blue-600 uppercase w-full mt-5 text-white rounded">
             Save
           </button>
         </div>
