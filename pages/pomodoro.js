@@ -18,7 +18,11 @@ export default function Home() {
   const [ticking, setTicking] = useState(false);
   const [isTimeUp, setIsTimeUp]= useState(false);
 
-  const alarmRef = useRef();
+  const [openSettings, setOpenSettings] = useState(false);
+  const alarmRef = useRef(null);
+  // const pomodoroRef = useRef(null);
+  // const shortBreakRef = useRef(null);
+  // const longBreakRef = useRef(null);
 
   //cambia de estado cuando se consumen los segundos 
   const switchStage = (index) =>{
@@ -118,7 +122,7 @@ export default function Home() {
   return (
     <div className="bg-gray-900 min-h-screen font-inter">
       <div className="max-w-2xl min-h-screen mx-auto">
-        <Navigations/>
+        <Navigations setOpenSettings={setOpenSettings}/>
         <Timer stage={stage}
          switchStage={switchStage} 
          getTickingTime={getTickingTime}
@@ -129,7 +133,12 @@ export default function Home() {
          muteAlarm={muteAlarm}
          reset={reset}/>
          <Alarm ref={alarmRef}/>
-         <PomoSettings />
+         <PomoSettings openSettings={openSettings}
+         setOpenSettings = {setOpenSettings}
+        //  pomodoroRef={pomodoroRef}
+        //  shortBreakRef = {shortBreakRef}
+        //  longBreakRef = {longBreakRef}
+        />
       </div>
     </div>
   )
