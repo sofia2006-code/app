@@ -20,9 +20,20 @@ export default function Home() {
 
   const [openSettings, setOpenSettings] = useState(false);
   const alarmRef = useRef(null);
-  // const pomodoroRef = useRef(null);
-  // const shortBreakRef = useRef(null);
-  // const longBreakRef = useRef(null);
+  const pomodoroRef = useRef(null);
+  const shortBreakRef = useRef(null);
+  const longBreakRef = useRef(null);
+  // lo decia el tutorial pero no funco xq habia problemas con ref en timer
+
+  //en onSave updatea el tiempo default
+  const updateTimeDefaultValue =() =>{
+    setPomodoro(pomodoroRef.current.value);
+    setShortBreak(shortBreakRef.current.value);
+    setLongBreak(longBreakRef.current.value);
+    setOpenSettings(false);
+    setSeconds(0);
+    setConsumeSec(0);
+  }
 
   //cambia de estado cuando se consumen los segundos 
   const switchStage = (index) =>{
@@ -62,10 +73,8 @@ export default function Home() {
   // setea todos los valores a su valor original
   const reset =() =>{
     setTicking(false);
-    setPomodoro(25);
-    setLongBreak(10);
-    setShortBreak(1);
     setSeconds(0);
+    updateTimeDefaultValue();
   }
   
   //cuando hay que resetear le da play a la alarma
@@ -134,10 +143,11 @@ export default function Home() {
          reset={reset}/>
          <Alarm ref={alarmRef}/>
          <PomoSettings openSettings={openSettings}
-         setOpenSettings = {setOpenSettings}
-        //  pomodoroRef={pomodoroRef}
-        //  shortBreakRef = {shortBreakRef}
-        //  longBreakRef = {longBreakRef}
+         setOpenSettings = {setOpenSettings} 
+         updateTimeDefaultValue={updateTimeDefaultValue}
+         pomodoroRef={pomodoroRef}
+         shortBreakRef = {shortBreakRef}
+         longBreakRef = {longBreakRef}
         />
       </div>
     </div>

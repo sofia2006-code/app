@@ -3,16 +3,18 @@ import React from 'react'
 import { FiX } from "react-icons/fi";
 import { useRef } from 'react'
 
-function PomoSettings(
-  // pomodoroRef,
-  // longBreakRef,
+function PomoSettings({
+  pomodoroRef,
+  longBreakRef,
+  shortBreakRef,
   openSettings,
-  setOpenSettings
-) {
+  setOpenSettings,
+  updateTimeDefaultValue
+}) {
 
-  const pomodoroRef = useRef(null);
-  const shortBreakRef = useRef(null);
-  const longBreakRef = useRef(null);
+  // const pomodoroRef = useRef(null);
+  // const shortBreakRef = useRef(null);
+  // const longBreakRef = useRef(null);
 
   const options = [
     {
@@ -37,7 +39,10 @@ function PomoSettings(
 
   return (
     <>
-      <div className={` absolute h-full w-full left-0 top-0 bg-black bg-opacity-30 ${openSettings ? "" : "hidden"}`}>
+      <div className={` absolute h-full w-full left-0 top-0 bg-black bg-opacity-30 
+      ${openSettings ? "" : "hidden"}`}
+      // s
+      >
         <div className={`max-w-xl bg-white absolute sm:w-96 w-11/12 left-1/2 top-1/2 p-5 rounded-md${openSettings ? "" : "hidden"}`}
           // si se abren los settings abre el mensaje, sino lo oculta
           style={{
@@ -46,7 +51,7 @@ function PomoSettings(
         >
           <div className="text-gray-400 flex justify-between items-center">
             <h1 className="uppercase font-bold tracking-wider">Time setting</h1>
-            <FiX className="text-2xl" />
+            <FiX className="text-2xl" cursor-pointer onClick={()=> setOpenSettings(false)}/>
           </div>
           {/* linea simple */}
           <div className="h-1 w-fill bg-gray-400 mt-5 mb-5"></div>
@@ -70,7 +75,8 @@ function PomoSettings(
 
             })}
           </div>
-          <button className="bg-orange-600 uppercase w-full mt-5 text-white rounded py-2">
+          <button className="bg-orange-600 uppercase w-full mt-5 text-white rounded py-2" 
+          onClick={updateTimeDefaultValue}>
             Save
           </button>
         </div>
