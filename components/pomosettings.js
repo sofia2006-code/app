@@ -57,7 +57,7 @@ function PomoSettings({
           <div className="h-1 w-fill bg-gray-400 mt-5 mb-5"></div>
           <div className="flex gap-5">
             {options.map((input, index) => {
-
+              //el return es del valor del texto de los inputs
               return (
                 <div key={index}>
                   <div>

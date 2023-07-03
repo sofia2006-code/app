@@ -38,6 +38,7 @@ export default function Home() {
   //cambia de estado cuando se consumen los segundos 
   const switchStage = (index) =>{
     const isYes = consumedSecond && stage !== index 
+      // el tutorial decia que te pregunte cada vez si querias cambiar de estado pero en nuestra app seria muy molesto
       // ? confirm("Cambiar de estado")
       // : false;
     if(isYes){
@@ -83,6 +84,7 @@ export default function Home() {
     setIsTimeUp(true);
     alarmRef.current.play();
   }
+  
   const clockTicking =()=>{
     const minutes =getTickingTime();
     const setMinutes = updateminute();

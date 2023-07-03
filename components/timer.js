@@ -19,7 +19,7 @@ export default function Timer({
             return(
             <h1 key={index} className= {` ${index === stage ?"bg-gray-500 bg-opacity-30 p-1 align-items":""
             }p-1 cursor-pointer transition-all rounded`}
-              onClick={() => switchStage(index)}
+              onClick={() => switchStage(index)} //el switchStage cambia de recreo/pomodoro
             >
                 {option}
               </h1>
@@ -31,7 +31,8 @@ export default function Timer({
         
         <div className="mt-10 mb-10">
           <h1 className="text-8xl font-bold select-none m-0 flex flex-col justify-center items-center">
-            {getTickingTime()}:{seconds.toString().padStart(2, "0")}
+            {getTickingTime()}:{seconds.toString().padStart(2, "0")} 
+            {/* convierte los segundos a strings para poder mostrarlas en la pagina y al principio le agrega los dos ceros atras */}
           </h1>
         </div>
         <div className="flex gap-2 items-center">
