@@ -10,7 +10,8 @@ export default function handler(req, res) {
         const newTimer = {
             id: Date.now(),
             text: dato,
-            number: timerWork
+            number: timerWork,
+            number: RestTime
         }
         timers.push(newTimer)
         res.status(204).json(newTimer)

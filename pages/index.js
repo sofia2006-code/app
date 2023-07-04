@@ -9,12 +9,9 @@ export default function Home() {
       </h1>
       <Link href='/configuracion'> configuracion</Link>
 
-        <h2 class="underline decoration-sky-500">aprendiendo esta mierda</h2>
+        <h2 class="underline decoration-sky-500">aprendiendo next.js</h2>
       </div>
-
-
     </>
-    
   )
 }
 

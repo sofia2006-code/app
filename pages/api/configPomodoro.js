@@ -11,11 +11,11 @@ const conexion  = mysql.createConnection({
 
 });
 
-const express = require("express");
-const app = express();
-const port = 3000;
+// const express = require("express");
+// const app = express();
+// const port = 3000;
 
-app.use(express.json());
+// app.use(express.json());
 
 //pantalla pomodoro
 
@@ -48,6 +48,7 @@ let idTimer;
     }
 */
 
+/*
 //recibir post o delete de tareas/timers
 app.post ("/configuracionTimer", (req, res) => {
 
@@ -165,21 +166,25 @@ app.delete ("/configuracionTimer", (req, res) => {
         });
     }
 });
+*/
 
-/*
+
 //insertar tarea en pomodor (next)
 export default function handler(req, res) {
+    console.log(req.body)
     if (req.method === "POST") {
 
         res.status(200);
 
         if (req.body.tipo == "tarea") {
 
-            insTarea = [idUsu, req.body.dato];        
+            const insTarea = [idUsu, req.body.dato];  
+            console.log("a")      
 
             conexion.query('INSERT INTO tareaspomodoro (idUsu, tarea) VALUES (?)', [insTarea], function (err, resultsTarea){ 
                 
                 if (err) {
+                    console.log("b");
                     res.send("Error consultando: " + err);
                     return;
                 }
@@ -249,7 +254,7 @@ export default function handler(req, res) {
 
 
     }
-
+}
     else if (req.body.tipo == "timer")
     {
 
@@ -285,8 +290,7 @@ export default function handler(req, res) {
         });
     }
 }
-*/
 
-app.listen(port, () => {
-    console.log(`API listening at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`API listening at http://localhost:${port}`);
+// });

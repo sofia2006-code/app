@@ -13,9 +13,9 @@ function TasksPage() {
     }
 
     const submitTask = async() => {
-        const response = await fetch ('/api/tasks', {
+        const response = await fetch ('/api/configPomodoro', {
             method: 'POST',
-            body: JSON.stringify({ task }),
+            body: JSON.stringify({ dato: task, tipo: "tarea"}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -30,18 +30,23 @@ function TasksPage() {
     <>
         <input type='text' value={task} onChange={e => setTask(e.target.value)}></input>
         <hr></hr>
-        <button onClick={submitTask} className = 'absolute font-semibold top-20 h-22 w-120'>Submit Task</button>
-       
-        <button onClick={fetchTasks}>Load Tasks</button>
-        {
-            tasks.map(task => {
-                return (
-                    <div key={task.id}>
-                        {task.id} {task.text} 
-                    </div>
-                )
-            })
-        }
+        
+        <div class="relative h-32 w-32">
+            <button onClick={submitTask} className = 'absolute inset-x-0 bottom-0 h-0'>Submit Task</button>
+            
+            <button onClick={fetchTasks} className='absolute inset-x-0 bottom-0 h-8'>Load Tasks</button>
+            {
+                tasks.map(task => {
+                    return (
+                        <div key={task.id}>
+                            {task.id} {task.text} 
+                        </div>
+                    )
+                })
+            }
+
+        </div>
+        
     </>
     )
 }

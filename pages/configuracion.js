@@ -55,5 +55,4 @@ export default function configuracion() {
         </div>
     </>
     ) 
-    
 }
