@@ -11,11 +11,13 @@ const conexion  = mysql.createConnection({
 
 });
 
-// const express = require("express");
-// const app = express();
-// const port = 3000;
+/*
+ const express = require("express");
+ const app = express();
+ const port = 3000;
 
-// app.use(express.json());
+ app.use(express.json());
+ */
 
 //pantalla pomodoro
 
@@ -25,6 +27,7 @@ const conexion  = mysql.createConnection({
 //tengo que postear desde login el id de usuario y recibirlo desde aca
 
 //tengo que recibir de variable global o post lo que sea el idusu que se sacaria en login (POR AHORA HARDCODEADO)
+
 let idUsu = 1;
 
 let tarea;
@@ -170,6 +173,7 @@ app.delete ("/configuracionTimer", (req, res) => {
 
 
 //insertar tarea en pomodor (next)
+
 export default function handler(req, res) {
     console.log(req.body)
     if (req.method === "POST") {
@@ -291,6 +295,9 @@ export default function handler(req, res) {
     }
 }
 
-// app.listen(port, () => {
-//     console.log(`API listening at http://localhost:${port}`);
-// });
+
+/*
+ app.listen(port, () => {
+     console.log(`API listening at http://localhost:${port}`);
+ });
+*/
