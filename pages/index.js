@@ -4,10 +4,8 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-
-
-      <h1 className="bg-red-900">aprendiendo esta mierda</h1>
+    <div className="bg-black min-h">
+      
     </div>
   )
 }
