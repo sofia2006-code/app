@@ -7,9 +7,6 @@ function TimersPage() {
     const [timerWork, setTimerWork] = useState('')
     const [RestTime, setRestTime] = useState('')
 
-    const handletimerWork = ()=> {
-
-    }
 
     //no lo toques
     const fetchTimers = async () => {
