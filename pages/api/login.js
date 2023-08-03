@@ -13,6 +13,7 @@ const conexion  = mysql.createConnection({
 
 let mail;
 let pass;
+let idUsu;
 
 export default function handler(req, res) {
     console.log(req.body)
@@ -29,22 +30,16 @@ export default function handler(req, res) {
 
             conexion.query('SELECT mail AND contrasenia FROM usuarios WHERE mail = ? AND contrasenia = ?', [mail, pass], function (err, results, fields) {
                 
-                //tira error si mail o contraeña es incorrecto
+                //datos que me pasa el front luego de login con google
+                //probar porque quizas es al revez (if significa registro y else significa login)                
+                //registro en nuestra DB
                 if (results.length > 0) {
-                    console.log("> error: El mail y/o contraseña es incorrecto");
-                    //res.redirect("http://localhost/GreenSense/html/registrar.html");
                     
-                    //mandar res.status a front para que resuelva error
-                    res.status(200).json("ErrIncorrecto");
-                }
-
-                //Sube datos a DB y mandar mail de registro
-                else {
                     conexion.query('INSERT INTO usuarios ( mail, contrasenia) VALUES ("'+mail+'", "'+pass+'" )', function (error,results,fields){
                         if (error) throw error;
                         console.log ("> registro insertado");
-                        //res.redirect("http://localhost/GreenSense/html/cuentaCreada.html");
                         
+                        //ver para mandar mail de registro
                         /*
                         transporter = nodemailer.createTransport({
                             host: "smtp.gmail.com",
@@ -73,7 +68,34 @@ export default function handler(req, res) {
                             }
                         });
                         */
+
+                        //BUSCAR MANERA DE SACAR ID DE USUARIO Y PASARLA A OTRO ARCHIVO DENODE JS
+                        //YA SE POR MEDIO DE FRONT O TODO POR BACK
+                        conexion.query('SELECT idUsu FROM usuarios WHERE usuario = ? AND contrasenia = ?', [usuario, contrasenia], function (err, results) {
+
+                            //guardamos id de usuario loggeado (hay que guardarlo globalmente para pantalla de pomodoro)
+                            //otra es postarlo y recibirlo desde pantalla pomodoro
+                            idUsu = results[0].idUsu;
+                    
+                            console.log ("usuario "+idUsu+" loggeado");
+                            
+                        });
                     });     
+
+                }
+
+                //login
+                else {
+
+                    conexion.query('SELECT idUsu FROM usuarios WHERE usuario = ? AND contrasenia = ?', [usuario, contrasenia], function (err, results) {
+
+                        //guardamos id de usuario loggeado (hay que guardarlo globalmente para pantalla de pomodoro)
+                        //otra es postarlo y recibirlo desde pantalla pomodoro
+                        idUsu = results[0].idUsu;
+                
+                        console.log ("usuario "+idUsu+" loggeado");
+                        
+                    });
                 }
             });
         }
@@ -81,11 +103,6 @@ export default function handler(req, res) {
         //Instrucciones si le faltaron datos al usuario
         else {
             console.log ("> error, falta mail o contraseña");
-            
-            //BUSCAR MANERA DE SACAR ID DE USUARIO Y PASARLA A OTRO ARCHIVO DENODE JS
-            //YA SE POR MEDIO DE FRONT O TODO POR BACK
-            
-            //res.redirect("http://localhost/GreenSense/html/registrar.html");
             
             //mandar res.status a front para que resuelva error
             res.status(200).json("ErrFalta");
