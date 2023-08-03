@@ -1,4 +1,4 @@
-/*import Head from "next/head"
+import Head from "next/head"
 
 export default PageLayout ({ children }); {
     return (
@@ -11,9 +11,16 @@ export default PageLayout ({ children }); {
         <main>
          {children}
         </main>
+        <body>
+            <Providers>
+            
+            <Appbar/>
+
+            {children}
+            </Providers>
+        </body>
         </>
 
     )
 
 }
-*/

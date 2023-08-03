@@ -19,6 +19,8 @@
     "stringify": "^5.2.0"
   },
   "devDependencies": {
+    "@types/node": "^20.4.6",
+    "@types/react": "18.2.18",
     "autoprefixer": "^10.4.14",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
