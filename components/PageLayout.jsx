@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Navbar from './Navbar';
+import Providers from './Providers';
+import Appbar from './Appbar'
 
 export default function PageLayout({ children, title = 'TafocusApp' }) {
     return(
@@ -9,13 +11,20 @@ export default function PageLayout({ children, title = 'TafocusApp' }) {
         <meta name="description" content="The best app tp focus on class" />
         <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header>
+
+        <header> 
+            <Providers>
+                <Appbar/>
+            {children}
+            </Providers>
             <Navbar />
         </header>
+
         <main>
             {children}
         </main> 
-    
+
+       
     </>
     )
 }
