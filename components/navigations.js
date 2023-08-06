@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { FiArrowLeft, FiSettings } from "react-icons/fi";
-export default function Navigations({setOpenSettings}) {
+export default function Navigations({setOpenSettings, openConf}) {
   return (
       <nav className="pt-5 text-white flex justify-between w-11/12 mx-auto">
         
@@ -10,7 +10,13 @@ export default function Navigations({setOpenSettings}) {
           <h1 >Tafocus</h1>
         </div>
         {/* meter aca un booleano para usarlo en el index */}
-        <FiSettings className="text-2xl cursor-pointer" onClick={()=>setOpenSettings(value =>!value)}/>
-      </nav>
+        
+        {openConf && (
+        <FiSettings
+          className="text-2xl cursor-pointer"
+          onClick={() => setOpenSettings(prevValue => !prevValue)}
+        />
+        )}    
+     </nav>
   )
 }
