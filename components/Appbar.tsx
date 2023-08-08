@@ -1,5 +1,5 @@
-import react from 'react'
-import SignInbutton from './SignInbutton'
+import React from 'react'
+import SignInbutton from './loginBtn.jsx'
 
 const Appbar = () => {
     return (
