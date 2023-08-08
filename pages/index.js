@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Navigations from '../components/navigations'
 import {  FcGoogle } from "react-icons/fc";
 import { BsFillLockFill } from "react-icons/bs"
-// import Woman from "../imagenes/woman.jpg"
 export default function Home() {
   return (
 
@@ -22,9 +21,9 @@ export default function Home() {
       <button className="mt-14 px-[80px] py-3 text-lg rounded-full bg-[#DF6B00] text-white font-mormal">
             Crear cuenta      
       </button>
-      {/* <div className="absolute bottom-0 right-0">
-        <img src={Woman} alt="Background" />
-      </div> */}
+      <div className="absolute bottom-0 right-0">
+        <img src="/imagenes/woman.png" alt=""   />
+      </div>
     </div>
     
   )
