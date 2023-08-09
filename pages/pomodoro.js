@@ -5,7 +5,7 @@ import Navigations from '../components/navigations'
 import Timer from '../components/timer'
 import styles from '../styles/Home.module.css'
 import Alarm from '../components/alarm'
-
+import PomoSettings from '../components/pomosettings'
 //import styles from '../styles/globals.css'
 
 export default function Home() {
@@ -16,12 +16,29 @@ export default function Home() {
   const[stage, setStage] = useState(0);
   const [consumedSecond, setConsumeSec] = useState(0)
   const [ticking, setTicking] = useState(false);
+  const [isTimeUp, setIsTimeUp]= useState(false);
 
-  const alarmRef = useRef();
+  const [openSettings, setOpenSettings] = useState(false);
+  const alarmRef = useRef(null);
+  const pomodoroRef = useRef(null);
+  const shortBreakRef = useRef(null);
+  const longBreakRef = useRef(null);
+  // lo decia el tutorial pero no funco xq habia problemas con ref en timer
+
+  //en onSave updatea el tiempo default
+  const updateTimeDefaultValue =() =>{
+    setPomodoro(pomodoroRef.current.value);
+    setShortBreak(shortBreakRef.current.value);
+    setLongBreak(longBreakRef.current.value);
+    setOpenSettings(false);
+    setSeconds(0);
+    setConsumeSec(0);
+  }
 
   //cambia de estado cuando se consumen los segundos 
   const switchStage = (index) =>{
     const isYes = consumedSecond && stage !== index 
+      // el tutorial decia que te pregunte cada vez si querias cambiar de estado pero en nuestra app seria muy molesto
       // ? confirm("Cambiar de estado")
       // : false;
     if(isYes){
@@ -57,25 +74,24 @@ export default function Home() {
   // setea todos los valores a su valor original
   const reset =() =>{
     setTicking(false);
-    setPomodoro(25);
-    setLongBreak(10);
-    setShortBreak(1);
     setSeconds(0);
+    updateTimeDefaultValue();
   }
   
   //cuando hay que resetear le da play a la alarma
   const timeUp = () =>{
     reset();
     setIsTimeUp(true);
-    alarmRef.current.play
+    alarmRef.current.play();
   }
+  
   const clockTicking =()=>{
     const minutes =getTickingTime();
     const setMinutes = updateminute();
 
     // TIME UP
     if (minutes === 0 && seconds === 0){
-      reset();
+      timeUp();
     }
     else if (seconds ===0){
       setMinutes((minute) => minute -1); 
@@ -84,6 +100,17 @@ export default function Home() {
     else{
       setSeconds((second) => second - 1);
     }
+  }
+
+  const muteAlarm = () =>{
+    alarmRef.current.pause();
+    alarmRef.current.currentTime = 0; //reinicia el audio
+  };
+
+  const startTimer = () =>{
+    setIsTimeUp(false);
+    muteAlarm();
+    setTicking((ticking) =>!ticking) //que deje de correr
   }
   useEffect(() =>{
 
@@ -106,14 +133,25 @@ export default function Home() {
   return (
     <div className="bg-gray-900 min-h-screen font-inter">
       <div className="max-w-2xl min-h-screen mx-auto">
-        <Navigations/>
+        <Navigations setOpenSettings={setOpenSettings}
+          openConf={true}/>
         <Timer stage={stage}
          switchStage={switchStage} 
          getTickingTime={getTickingTime}
          seconds={seconds}
          ticking={ticking}
-         setTicking={setTicking}/>
+         startTimer={startTimer}
+         isTimeUp={isTimeUp}
+         muteAlarm={muteAlarm}
+         reset={reset}/>
          <Alarm ref={alarmRef}/>
+         <PomoSettings openSettings={openSettings}
+         setOpenSettings = {setOpenSettings} 
+         updateTimeDefaultValue={updateTimeDefaultValue}
+         pomodoroRef={pomodoroRef}
+         shortBreakRef = {shortBreakRef}
+         longBreakRef = {longBreakRef}
+        />
       </div>
     </div>
   )
