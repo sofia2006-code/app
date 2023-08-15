@@ -16,11 +16,33 @@ model tiempoPomodoro {
   nombre        String
   tiempoTrabajo DateTime
   tiempoRecreo  DateTime
+  User          User?    @relation(fields: [userId], references: [id])
+  userId        String?
+
+  @@index([userId])
 }
 
 model tareasPomodoro {
-  id    String @id @default(uuid())
-  tarea String
+  id     String  @id @default(uuid())
+  tarea  String
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@index([userId])
+}
+
+model User {
+  id              String           @id @default(cuid())
+  name            String?
+  email           String?          @unique
+  emailVerified   DateTime?
+  image           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  accounts        Account[]
+  sessions        Session[]
+  tiemposPomodoro tiempoPomodoro[]
+  tareasPomodoro  tareasPomodoro[]
 }
 
 model Account {
@@ -51,18 +73,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  sessions      Session[]
 }
 
 model VerificationRequest {
