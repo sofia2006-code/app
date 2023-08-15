@@ -3,6 +3,11 @@ import Image from 'next/image'
 import Navigations from '../components/navigations'
 import {  FcGoogle } from "react-icons/fc";
 import { BsFillLockFill } from "react-icons/bs"
+import Link from 'next/link';
+import Providers from '../components/Providers';
+import Appbar from '../components/Appbar';
+import LoginBtn from '../components/loginBtn';
+
 export default function Home() {
   return (
 
@@ -18,13 +23,16 @@ export default function Home() {
         <span className="mx-4 text-white font-semibold text-xl">o</span>
         <hr className="flex-grow border-t border-gray-400" />
       </div>
-      <button className="mt-14 px-[80px] py-3 text-lg rounded-full bg-[#DF6B00] text-white font-mormal">
+      <LoginBtn className="mt-14 px-[80px] py-3 text-lg rounded-full bg-[#DF6B00] text-white font-mormal">
             Crear cuenta      
-      </button>
+      </LoginBtn>
       <div className="absolute bottom-0 right-0">
         <img src="/imagenes/woman.png" alt=""   />
       </div>
+      
     </div>
     
+//<Link href='/configuracion'> configuracion</Link>
   )
 }
+

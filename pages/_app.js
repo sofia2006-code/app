@@ -1,16 +1,15 @@
-import Head from 'next/head'
+import PageLayout from '../components/PageLayout'
 import '../styles/globals.css'
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
-  return <>
-    <Head>
-      <title>Tafocus</title>
-      <meta name="description" content="The best app tp focus on class" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <Component {...pageProps} />
-  </>
 
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  )
 }
-
-export default MyApp
