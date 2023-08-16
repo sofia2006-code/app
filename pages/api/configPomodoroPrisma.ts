@@ -1,5 +1,8 @@
 import { PrismaClient } from ".prisma/client";
-//tengo que importar algo para tener getsession (sacar sesion nextauth)
+
+//no entiendo por que no puedo importar esto 
+import { authOptions } from 'pages/api/auth/[...nextauth]'
+import { getServerSession } from "next-auth/next"
 
 const prisma = new PrismaClient;
 
@@ -32,14 +35,13 @@ export async function handler(req, res) {
     if (req.method === "POST") {
         res.status(200);
 
-        //necesito importar getsession o ver como conseguir id de sesion
-        //sesion = await getSession({req});
+        const session = await getServerSession(req, res, authOptions)
         
-        // prisma.user.findFirst ({
-        //     where: {
-        //         id: sesion
-        //     }
-        // })
+        prisma.user.findFirst ({
+            where: {
+                sessions: session
+            }
+        })
 
     }
 }
