@@ -3,7 +3,7 @@ import { PrismaClient } from ".prisma/client";
 //no entiendo por que no puedo importar esto 
 
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "pages/api/auth/[...nextauth].js"
+import { authOptions } from "../pages/api/auth/[...nextauth].js"
 
 const prisma = new PrismaClient;
 
