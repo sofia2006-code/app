@@ -2,8 +2,6 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client" 
-import { authOptions } from 'pages/api/auth/[...nextauth].js'; 
-import { getServerSession } from "next-auth/next";
 
 /*const handler = NextAuth({
     providers: [
