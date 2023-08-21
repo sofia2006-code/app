@@ -1,8 +1,9 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client" 
+import { PrismaClient } from "@prisma/client"
 
+//TRY ONE
 /*const handler = NextAuth({
     providers: [
         GoogleProvider({
@@ -15,7 +16,8 @@ import { PrismaClient } from "@prisma/client"
 
 export { handler as GET, handler as POST };*/
 
-const prisma = new PrismaClient()
+//TRY TWO 
+/*const prisma = new PrismaClient()
 
 export const authOptions = {
     providers: [
@@ -27,6 +29,14 @@ export const authOptions = {
     adapter: PrismaAdapter(prisma),
   }
   export default NextAuth(authOptions)
+*/
 
-  
+export default NextAuth({
+  providers: [
+    GoogleProvider({
+      clientId: "750674425417-bd8rvgeebojs2mdlhfsvo4sa897dk06g.apps.googleusercontent.com",
+      clientSecret: "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"
+    })
+  ]
+})
 
