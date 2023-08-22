@@ -3,7 +3,7 @@ import { PrismaClient } from ".prisma/client";
 //no entiendo por que no puedo importar esto 
 
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../pages/api/auth/[...nextauth].js"
+import Nextauth from "../api/auth/[...nextauth]"
 
 const prisma = new PrismaClient;
 
@@ -36,7 +36,7 @@ export async function handler(req, res) {
     if (req.method === "POST") {
         res.status(200);
 
-        const session = await getServerSession(req, res, authOptions)
+        const session = await getServerSession(req, res, Nextauth)
         
         prisma.user.findFirst ({
             where: {

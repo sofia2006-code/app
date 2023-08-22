@@ -31,12 +31,16 @@ export const authOptions = {
   export default NextAuth(authOptions)
 */
 
+const prisma = new PrismaClient()
+
 export default NextAuth({
   providers: [
     GoogleProvider({
       clientId: "750674425417-bd8rvgeebojs2mdlhfsvo4sa897dk06g.apps.googleusercontent.com",
       clientSecret: "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"
-    })
-  ]
+    }),
+  ],
+  adapter: PrismaAdapter(prisma),
+  debug: true,
 })
 
