@@ -1,7 +1,8 @@
 import Head from 'next/head'
+import "bootstrap/dist/css/bootstrap.css"
 import Navbar from './Navbar';
 import Providers from './Providers';
-import Appbar from './Appbar'
+import ProviderWrapper from './ProviderWrapper'
 
 export default function PageLayout({ children, title = 'TafocusApp' }) {
     return (
@@ -12,17 +13,12 @@ export default function PageLayout({ children, title = 'TafocusApp' }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <header>
-                <Providers>
-                    <Appbar />
+            <body>
+                <ProviderWrapper>
                     {children}
-                </Providers>
-                <Navbar />
-            </header>
+                </ProviderWrapper>
+            </body>
 
-            <main>
-                {children}
-            </main>
 
 
         </>
