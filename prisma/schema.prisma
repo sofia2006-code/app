@@ -12,11 +12,11 @@ datasource db {
 }
 
 model tiempoPomodoro {
-  id            String   @id @default(uuid())
+  id            String  @id @default(uuid())
   nombre        String
-  tiempoTrabajo DateTime
-  tiempoRecreo  DateTime
-  User          User?    @relation(fields: [userId], references: [id])
+  tiempoTrabajo String
+  tiempoRecreo  String
+  User          User?   @relation(fields: [userId], references: [id])
   userId        String?
 
   @@index([userId])
