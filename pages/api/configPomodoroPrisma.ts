@@ -17,6 +17,13 @@ let insTarea: [number, string];
 let idTarea : number;
 let idTimer: number;
 
+/*
+interface tarea {
+    user: string;
+    tarea: string;
+}
+*/
+
 /* Los datos me los va a mandar asi front
     {
         tipo: tarea
@@ -36,13 +43,26 @@ export async function handler(req, res) {
     if (req.method === "POST") {
         res.status(200);
 
-        const session = await getServerSession(req, res, Nextauth)
+        const session = await getServerSession(Nextauth);
         
-        prisma.user.findFirst ({
+        const usuario = prisma.user.findFirst ({
             where: {
                 sessions: session
             }
         })
+
+        if (req.body.tipo == "tarea") {
+
+            await prisma.tareasPomodoro.create ({
+                data: tarea = [
+                 {
+                    user: (await usuario).id,
+                    tarea: req.body.dato, 
+                 },
+                ],
+            })
+        }
+        
 
     }
 }
