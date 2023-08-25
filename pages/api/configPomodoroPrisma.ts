@@ -49,12 +49,13 @@ export async function handler(req, res) {
             where: {
                 sessions: session
             }
+            //tengo que tomar solo la ID
         })
 
         if (req.body.tipo == "tarea") {
 
             await prisma.tareasPomodoro.create ({
-                data: tarea = [
+                data: [
                  {
                     user: (await usuario).id,
                     tarea: req.body.dato, 
