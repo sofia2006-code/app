@@ -45,7 +45,7 @@ export async function handler(req, res) {
 
         const session = await getServerSession(Nextauth);
         
-        const usuario = prisma.user.findFirst ({
+        const usuario = await prisma.user.findFirst ({
             where: {
                 sessions: session
             }
@@ -54,13 +54,12 @@ export async function handler(req, res) {
 
         if (req.body.tipo == "tarea") {
 
-            await prisma.tareasPomodoro.create ({
-                data: [
+            await prisma.tareasPomodoro.create({
+                data:
                  {
-                    user: (await usuario).id,
+                    userId: usuario.id,
                     tarea: req.body.dato, 
                  },
-                ],
             })
         }
         
