@@ -17,7 +17,7 @@ function TimersPage() {
 
     //preguntarle a nacho como hago para submitear el id, el dato, workTime, restTime
     const submitTimer = async () => {
-        const response = await fetch('/api/configPomodoro', {
+        const response = await fetch('/api/configPomodoroPrisma', {
             method: 'POST',
             body: JSON.stringify({ dato, tipo: "timer", timerWork, RestTime}),
             headers: {

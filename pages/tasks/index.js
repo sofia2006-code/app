@@ -6,7 +6,7 @@ function TasksPage() {
     const [task, setTask] = useState('')
 
     const submitTask = async() => {
-        const response = await fetch ('/api/configPomodoro', {
+        const response = await fetch ('/api/configPomodoroPrisma', {
             method: 'POST',
             body: JSON.stringify({ dato: task, tipo: "tarea"}),
              headers: {
