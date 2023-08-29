@@ -1,10 +1,9 @@
+//imports
 import { PrismaClient } from ".prisma/client";
-
-//no entiendo por que no puedo importar esto 
-
 import { getServerSession } from "next-auth/next"
 import Nextauth from "../api/auth/[...nextauth]"
 
+//variables
 const prisma = new PrismaClient;
 
 let sesion: string;
@@ -38,23 +37,25 @@ interface tarea {
     }
 */
 
+//esperar front
 export async function handler(req, res) {
     
-    console.log(req.body)
-
+    console.log (req.body);
     const session = await getServerSession(Nextauth);
     console.log(session);
-        
+    
+    //Conseguir usuario loggeado
     const usuario = await prisma.user.findFirst ({
         where: {
             sessions: session
         }
-        //tengo que tomar solo la ID
     })
 
+    //crear tarea/timer
     if (req.method === "POST") {
         res.status(200);
 
+        //crear tarea
         if (req.body.tipo == "tarea") {
 
             await prisma.tareasPomodoro.create({
@@ -65,6 +66,7 @@ export async function handler(req, res) {
             })
         }
 
+        //crear timer
         else if (req.body.tipo == "timer") {
 
             await prisma.tiempoPomodoro.create({
@@ -77,8 +79,11 @@ export async function handler(req, res) {
             })
         }
     }
+
+    //borrar tarea/timer
     else if (req.method === "DELETE") {
         
+        //borrar tarea
         if (req.body.tipo == "tarea") {
 
             await prisma.tareasPomodoro.delete({
@@ -89,6 +94,7 @@ export async function handler(req, res) {
             })
         }
 
+        //borar timer
         else if (req.body.tipo == "timer") {
 
             await prisma.tiempoPomodoro.delete({
