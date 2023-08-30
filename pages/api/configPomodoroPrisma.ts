@@ -38,9 +38,10 @@ interface tarea {
 */
 
 //esperar front
-export async function handler(req, res) {
+export default async function handler(req, res) {
     
     console.log (req.body);
+    
     const session = await getServerSession(Nextauth);
     console.log(session);
     
@@ -66,14 +67,16 @@ export async function handler(req, res) {
         res.status(200);
 
         //crear tarea
+        /*
         if (req.body.tipo == "tarea") {
-
-            await prisma.tareasPomodoro.create({
+            
+            const crearTarea = await prisma.tareasPomodoro.create({
                 data: {
                     userId: usuario.id,
                     tarea: req.body.dato as string, 
                  },
             })
+            res.status(200).json(crearTarea);
         }
 
         //crear timer
@@ -88,9 +91,11 @@ export async function handler(req, res) {
                  },
             })
         }
+        */
     }
 
     //borrar tarea/timer
+    /*
     else if (req.method === "DELETE") {
         
         //borrar tarea
@@ -118,4 +123,5 @@ export async function handler(req, res) {
         }
 
     }
+    */
 }
