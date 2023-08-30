@@ -1,4 +1,3 @@
-//imports
 import { PrismaClient } from ".prisma/client";
 import { getServerSession } from "next-auth/next"
 import Nextauth from "../api/auth/[...nextauth]"
@@ -6,16 +5,15 @@ import Nextauth from "../api/auth/[...nextauth]"
 //variables
 const prisma = new PrismaClient;
 
-let sesion: [string];
+let sesion
 
-let tarea: string;
-let tiempoTrabajo: string;
-let tiempoRecreo: string;
-let insTarea: [number, string];
+let tarea
+let tiempoTrabajo
+let tiempoRecreo
+let insTarea
 
-let idTarea : number;
-let idTimer: number;
-
+let idTarea 
+let idTimer
 /*
 interface tarea {
     user: string;
@@ -71,7 +69,7 @@ export async function handler(req, res) {
             await prisma.tareasPomodoro.create({
                 data: {
                     userId: usuario.id,
-                    tarea: req.body.dato as string, 
+                    tarea: req.body.dato, 
                  },
             })
         }
@@ -82,9 +80,9 @@ export async function handler(req, res) {
             await prisma.tiempoPomodoro.create({
                 data: {
                     userId: usuario.id,
-                    nombre: req.body.dato as string,
-                    tiempoTrabajo: req.body.tiempoTrabajo as string,
-                    tiempoRecreo: req.body.tiempoRecreo as string, 
+                    nombre: req.body.dato,
+                    tiempoTrabajo: req.body.tiempoTrabajo,
+                    tiempoRecreo: req.body.tiempoRecreo, 
                  },
             })
         }
@@ -99,7 +97,7 @@ export async function handler(req, res) {
             await prisma.tareasPomodoro.delete({
                 where: {
                   userId: usuario.id,
-                  tarea: req.body.dato as string,
+                  tarea: req.body.dato,
                 },
             })
         }
@@ -110,9 +108,9 @@ export async function handler(req, res) {
             await prisma.tiempoPomodoro.delete({
                 where: {
                   userId: usuario.id,
-                  nombre: req.body.dato as string,
-                  tiempoTrabajo: req.body.tiempoTrabajo as string,
-                  tiempoRecreo: req.body.tiempoRecreo as string, 
+                  nombre: req.body.dato,
+                  tiempoTrabajo: req.body.tiempoTrabajo,
+                  tiempoRecreo: req.body.tiempoRecreo, 
                 },
             })
         }

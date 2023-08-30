@@ -28,7 +28,7 @@ export async function handler(req, res) {
         
         await prisma.tareasPomodoro.create({
             data: {
-                userId: usuario.id as string,
+                userId: usuario.id,
                 tarea: req.body.dato as string, 
              },
         })
@@ -63,7 +63,7 @@ export async function handler(req, res) {
         await prisma.tareasPomodoro.delete ({
           where: {
             userId: usuario.id,
-            tarea: req.body.dato,
+            tarea: req.body.dato as string,
           },
         })
     }
