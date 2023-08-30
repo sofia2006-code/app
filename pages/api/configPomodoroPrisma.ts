@@ -1,7 +1,8 @@
 //imports
 import { PrismaClient } from ".prisma/client";
+import { authOptions } from "../api/auth/[...nextauth]"
 import { getServerSession } from "next-auth/next"
-import Nextauth from "../api/auth/[...nextauth]"
+
 
 //variables
 const prisma = new PrismaClient;
@@ -42,32 +43,20 @@ export default async function handler(req, res) {
     
     console.log (req.body);
     
-    const session = await getServerSession(Nextauth);
-    console.log(session);
+    const session = await getServerSession(req, res, authOptions);
     
-    //Conseguir usuario loggeado
+   //Conseguir usuario loggeado
     const usuario = await prisma.user.findFirst ({
         where: {
-            sessions: session
+            email: session.user.email,
         }
     })
-
-    //conseguir todas las tareas
-    if (req.method === "GET") {
-        await prisma.tareasPomodoro.findMany({
-            where: {
-                userId: usuario.id,
-            },
-        })
-        
-    }
-
+  
     //crear tarea/timer
-    else if (req.method === "POST") {
-        res.status(200);
+    if (req.method === "POST") {
+        //res.status(200);
 
-        //crear tarea
-        /*
+        //crear tarea (no esta andando)
         if (req.body.tipo == "tarea") {
             
             const crearTarea = await prisma.tareasPomodoro.create({
@@ -76,7 +65,9 @@ export default async function handler(req, res) {
                     tarea: req.body.dato as string, 
                  },
             })
-            res.status(200).json(crearTarea);
+            console.log(crearTarea);
+            res.status(200);
+            //res.status(200).json(crearTarea);
         }
 
         //crear timer
@@ -91,7 +82,6 @@ export default async function handler(req, res) {
                  },
             })
         }
-        */
     }
 
     //borrar tarea/timer
