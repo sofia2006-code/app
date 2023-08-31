@@ -3,28 +3,10 @@ import { PrismaClient, Prisma } from ".prisma/client";
 import { authOptions } from "../api/auth/[...nextauth]"
 import { getServerSession } from "next-auth/next"
 
-
 //variables
 const client = new PrismaClient();
 
-let sesion: [string];
-
-let tarea: string;
-let tiempoTrabajo: string;
-let tiempoRecreo: string;
-let insTarea: [number, string];
-
-let idTarea : number;
-let idTimer: number;
-
-/*
-interface tarea {
-    user: string;
-    tarea: string;
-}
-*/
-
-/* Los datos me los va a mandar asi front
+/* Metodo de comunicacion con Front-End
     {
         tipo: tarea
         dato: diagrama de bloques
@@ -41,7 +23,7 @@ interface tarea {
 //esperar front
 export default async function handler(req, res) {
     
-    console.log (req.body);
+    console.log (req.body, "\n");
     
     const session = await getServerSession(req, res, authOptions);
     
@@ -66,15 +48,16 @@ export default async function handler(req, res) {
                         completado: false,
                      },
                 })    
+
+                console.log("Tarea creada: \n", crearTarea);
                 res.status(200);
             } 
             //Tirar error si tarea ya existe
             catch (e) {
                 if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                  // The .code property can be accessed in a type-safe manner
                   if (e.code === 'P2002') {
                     console.log(
-                      'Tunique constraint violation, la tarea ya existe'
+                      'Unique constraint violation, la tarea ya existe'
                     )
                     res.status(400);
                   }
@@ -87,7 +70,7 @@ export default async function handler(req, res) {
         else if (req.body.tipo == "timer") {
             
             try {
-                const creatTiempo = await client.tiempoPomodoro.create({
+                const crearTimer = await client.tiempoPomodoro.create({
                     data: {
                         userId: usuario.id,
                         nombre: req.body.dato as string,
@@ -95,53 +78,57 @@ export default async function handler(req, res) {
                         tiempoRecreo: req.body.RestTime as string, 
                      },
                 })
+
+                console.log("Timer creado: \n", crearTimer);
                 res.status(200);
             } 
             //Tirar error si timer ya existe
             catch (e) {
                 if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                  // The .code property can be accessed in a type-safe manner
                   if (e.code === 'P2002') {
                     console.log(
-                      'Tunique constraint violation, el timer ya existe'
+                      'Unique constraint violation, el timer ya existe'
                     )
                     res.status(400);
                   }
                 }
                 //throw e
             }
-
         }
     }
 
     //borrar tarea/timer
-    /*
+    
     else if (req.method === "DELETE") {
         
         //borrar tarea
         if (req.body.tipo == "tarea") {
 
-            await prisma.tareasPomodoro.delete({
+            const borrarTarea = await client.tareasPomodoro.delete({
                 where: {
                   userId: usuario.id,
                   tarea: req.body.dato as string,
                 },
             })
+            
+            console.log("Tarea borrada: \n", borrarTarea);
+            res.status(200);
         }
 
         //borar timer
         else if (req.body.tipo == "timer") {
 
-            await prisma.tiempoPomodoro.delete({
+            const borrarTimer = await client.tiempoPomodoro.delete({
                 where: {
                   userId: usuario.id,
                   nombre: req.body.dato as string,
-                  tiempoTrabajo: req.body.tiempoTrabajo as string,
-                  tiempoRecreo: req.body.tiempoRecreo as string, 
                 },
             })
+
+            console.log("timer borrado: \n", borrarTimer);
+            res.status(200);
         }
 
     }
-    */
+    
 }

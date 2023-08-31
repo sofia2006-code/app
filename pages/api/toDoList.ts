@@ -1,70 +1,113 @@
 //imports
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient, Prisma } from ".prisma/client";
+import { authOptions } from "../api/auth/[...nextauth]"
 import { getServerSession } from "next-auth/next"
-import Nextauth from "../api/auth/[...nextauth]"
+import { Session } from "inspector";
 
 //variables
-const prisma = new PrismaClient;
-let sesion: string;
-let tarea: string;
+const client = new PrismaClient;
 
 //esperar front
 export async function handler(req, res) {
     
-    console.log (req.body);
+    console.log (req.body, "\n");
 
-    const session = await getServerSession(Nextauth);
+    const session = await getServerSession(req, res, authOptions);
     console.log(session);
 
     //Conseguir usuario loggeado
-    const usuario = await prisma.user.findFirst ({
+    const usuario = await client.user.findFirst ({
         where: {
-            sessions: session
+            email: session.user.email,
         }
     })
 
-    //Crear tarea
-    if (req.method === "POST") {
-        
-        await prisma.tareasPomodoro.create({
-            data: {
-                userId: usuario.id,
-                tarea: req.body.dato as string, 
-             },
-        })
-    }
-
     //conseguir todas las tareas
-    else if (req.method === "GET") {
-        await prisma.tareasPomodoro.findMany({
+    if (req.method === "GET") {
+        const tareas = await client.tareasPomodoro.findMany({
             where: {
                 userId: usuario.id,
             },
         })
+
+        console.log("Tareas: \n", tareas);
+        res.status(200);
+    }
+
+    //Crear tarea
+    else if (req.method === "POST") {
+        
+        try {
+            const crearTarea = await client.tareasPomodoro.create({
+                data: {
+                    userId: usuario.id,
+                    tarea: req.body.dato as string, 
+                    completado: false,
+                 },
+            }) 
+
+            console.log("Tarea creada: \n", crearTarea);
+            res.status(200);
+        } 
+        //Tirar error si tarea ya existe
+        catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+              // The .code property can be accessed in a type-safe manner
+              if (e.code === 'P2002') {
+                console.log(
+                  'Unique constraint violation, la tarea ya existe'
+                )
+                res.status(400);
+              }
+            }
+            //throw e
+        }
     }
 
     //actualizar tarea (chequear que dato me llego)
-    /*
+    
     else if (req.method === "PUT") {
-        await prisma.tareasPomodoro.update ({
-            where: {
-                userId: usuario.id,
-                tarea: req.body.dato,
-            },
-            data: {
-                tarea: req.body.dato2,
+        
+        try {
+            const cambiarTarea = await client.tareasPomodoro.update ({
+                where: {
+                    userId: usuario.id,
+                    tarea: req.body.dato,
+                },
+                data: {
+                    tarea: req.body.dato2,
+                }
+            })    
+
+            console.log("Tarea actualizada: \n", cambiarTarea);
+            res.status(200);
+        } 
+        //Tirar error si tarea ya existe
+        catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+              // The .code property can be accessed in a type-safe manner
+              if (e.code === 'P2002') {
+                console.log(
+                  'Unique constraint violation, Hay otra tarea con ese nombre'
+                )
+                res.status(400);
+              }
             }
-        })
+            //throw e
+        }
+
     }
-    */
 
     //borrar tarea
     else if (req.method === "DELETE") {
-        await prisma.tareasPomodoro.delete ({
+        const borrarTarea = await client.tareasPomodoro.delete ({
           where: {
             userId: usuario.id,
             tarea: req.body.dato as string,
           },
         })
+
+        console.log("Tarea borrada: \n", borrarTarea);
+        res.status(200);
     }
 }
