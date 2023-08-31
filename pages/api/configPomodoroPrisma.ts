@@ -1,10 +1,15 @@
 //imports
 import { PrismaClient, Prisma } from ".prisma/client";
-import { authOptions } from "../api/auth/[...nextauth]"
-import { getServerSession } from "next-auth/next"
+import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 //variables
 const client = new PrismaClient();
+
+type ResponseData = {
+  message: string
+}
 
 /* Metodo de comunicacion con Front-End
     {
@@ -21,8 +26,11 @@ const client = new PrismaClient();
 */
 
 //esperar front
-export default async function handler(req, res) {
-    
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<ResponseData>
+){
+
     console.log (req.body, "\n");
     
     const session = await getServerSession(req, res, authOptions);
@@ -59,7 +67,7 @@ export default async function handler(req, res) {
                     console.log(
                       'Unique constraint violation, la tarea ya existe'
                     )
-                    res.status(400);
+                    res.status(400).json({message: 'P2002'});
                   }
                 }
                 //throw e
@@ -89,7 +97,7 @@ export default async function handler(req, res) {
                     console.log(
                       'Unique constraint violation, el timer ya existe'
                     )
-                    res.status(400);
+                    res.status(400).json({message: 'P2002'});
                   }
                 }
                 //throw e

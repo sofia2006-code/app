@@ -5,8 +5,6 @@ export default function todolist(){
     const [todo, setTodo] = useState({todo: ""});
     
     return(
-
-
         <main>
             <h1>TO-DO</h1>
             <div>
@@ -14,7 +12,7 @@ export default function todolist(){
                     <input
                         type="text"
                         placeholder="Taks to be done..."
-                        value={todo.todo}
+                        //value={todo.todo}
                         //SET VALUE OF INPUT NOT READ ONLY (buscar esto en internet)
                     />
                 </form>

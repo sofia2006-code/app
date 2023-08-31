@@ -2,7 +2,7 @@
 
 
 ### Insertar tarea de usuario a DB
-POST http://localhost:3000/configuracionTimer HTTP/1.1 
+POST http://localhost:3000/tasks HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ### Insertar timer de usuario a DB
 
-POST http://localhost:3000/configuracionTimer HTTP/1.1 
+POST http://localhost:3000/timers HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ### Borrar tarea de usuario de DB
 
-DELETE http://localhost:3000/configuracionTimer HTTP/1.1
+DELETE http://localhost:3000/taks HTTP/1.1
 Content-Type: application/json
 
 {
@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ### Borrar timer de usuario de DB
 
-DELETE http://localhost:3000/configuracionTimer HTTP/1.1
+DELETE http://localhost:3000/timers HTTP/1.1
 Content-Type: application/json
 
 {

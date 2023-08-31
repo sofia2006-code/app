@@ -1,14 +1,22 @@
 //imports
 import { PrismaClient, Prisma } from ".prisma/client";
-import { authOptions } from "../api/auth/[...nextauth]"
-import { getServerSession } from "next-auth/next"
-import { Session } from "inspector";
+import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 
 //variables
 const client = new PrismaClient;
 
+type ResponseData = {
+    message: string
+  }
+
 //esperar front
-export async function handler(req, res) {
+export async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<ResponseData>
+){
     
     console.log (req.body, "\n");
 
@@ -57,7 +65,7 @@ export async function handler(req, res) {
                 console.log(
                   'Unique constraint violation, la tarea ya existe'
                 )
-                res.status(400);
+                res.status(400).json({message: 'P2002'});
               }
             }
             //throw e
@@ -90,7 +98,7 @@ export async function handler(req, res) {
                 console.log(
                   'Unique constraint violation, Hay otra tarea con ese nombre'
                 )
-                res.status(400);
+                res.status(400).json({message: 'P2002'});
               }
             }
             //throw e
