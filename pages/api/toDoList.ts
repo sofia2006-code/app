@@ -10,6 +10,7 @@ const client = new PrismaClient;
 
 type ResponseData = {
     message: string
+    object: {}[]
   }
 
 //esperar front
@@ -37,9 +38,9 @@ export async function handler(
                 userId: usuario.id,
             },
         })
-
+    
         console.log("Tareas: \n", tareas);
-        res.status(200);
+        res.status(200).json({object: [tareas.tarea]});
     }
 
     //Crear tarea
