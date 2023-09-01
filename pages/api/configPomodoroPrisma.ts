@@ -2,14 +2,14 @@
 import { PrismaClient, Prisma } from ".prisma/client";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
-import type { NextApiRequest, NextApiResponse } from 'next';
+//import type { NextApiRequest, NextApiResponse } from 'next';
 
 //variables
 const client = new PrismaClient();
 
-type ResponseData = {
-  message: string
-}
+// type ResponseData = {
+//   message: string
+// }
 
 /* Metodo de comunicacion con Front-End
     {
@@ -26,10 +26,7 @@ type ResponseData = {
 */
 
 //esperar front
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
-){
+export default async function handler(req, res){
 
     console.log (req.body, "\n");
     
@@ -58,7 +55,7 @@ export default async function handler(
                 })    
 
                 console.log("Tarea creada: \n", crearTarea);
-                res.status(200);
+                res.status(200).json(crearTarea.tarea);
             } 
             //Tirar error si tarea ya existe
             catch (e) {
@@ -88,7 +85,7 @@ export default async function handler(
                 })
 
                 console.log("Timer creado: \n", crearTimer);
-                res.status(200);
+                res.status(200).json(crearTimer.nombre, crearTimer.tiempoTrabajo, crearTimer.tiempoRecreo);
             } 
             //Tirar error si timer ya existe
             catch (e) {
@@ -120,7 +117,7 @@ export default async function handler(
             })
             
             console.log("Tarea borrada: \n", borrarTarea);
-            res.status(200);
+            res.status(200).json(borrarTarea.tarea);
         }
 
         //borar timer
@@ -134,7 +131,7 @@ export default async function handler(
             })
 
             console.log("timer borrado: \n", borrarTimer);
-            res.status(200);
+            res.status(200).json(borrarTimer.nombre);
         }
 
     }

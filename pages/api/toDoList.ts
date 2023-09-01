@@ -2,22 +2,19 @@
 import { PrismaClient, Prisma } from ".prisma/client";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
-import type { NextApiRequest, NextApiResponse } from 'next';
+//import type { NextApiRequest, NextApiResponse } from 'next';
 
 
 //variables
 const client = new PrismaClient;
 
-type ResponseData = {
-    message: string
-    object: {}[]
-  }
+// type ResponseData = {
+//     message: string
+//     object: {}[]
+//   }
 
 //esperar front
-export async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
-){
+export async function handler(req, res){
     
     console.log (req.body, "\n");
 
@@ -40,7 +37,7 @@ export async function handler(
         })
     
         console.log("Tareas: \n", tareas);
-        res.status(200).json({object: [tareas.tarea]});
+        res.status(200).json(tareas);
     }
 
     //Crear tarea
@@ -56,7 +53,7 @@ export async function handler(
             }) 
 
             console.log("Tarea creada: \n", crearTarea);
-            res.status(200);
+            res.status(200).json(crearTarea.tarea);
         } 
         //Tirar error si tarea ya existe
         catch (e) {
@@ -89,7 +86,7 @@ export async function handler(
             })    
 
             console.log("Tarea actualizada: \n", cambiarTarea);
-            res.status(200);
+            res.status(200).json(cambiarTarea.tarea);
         } 
         //Tirar error si tarea ya existe
         catch (e) {
@@ -117,6 +114,6 @@ export async function handler(
         })
 
         console.log("Tarea borrada: \n", borrarTarea);
-        res.status(200);
+        res.status(200).json(borrarTarea.tarea);
     }
 }
