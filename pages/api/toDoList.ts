@@ -47,7 +47,7 @@ export async function handler(req, res){
             const crearTarea = await client.tareasPomodoro.create({
                 data: {
                     userId: usuario.id,
-                    tarea: req.body.dato as string, 
+                    tarea: req.body.data as string, 
                     completado: false,
                  },
             }) 
