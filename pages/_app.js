@@ -14,17 +14,18 @@ export default function App({
 {
   React.useEffect(()=>{
     const msg=firebase.messaging();
-    msg.requestPermission().then(()=>{
+    msg.requestPermission(). then(()=>{
       return msg.getToken();
     }).then((data)=>{
       console.warn("token", data)
     })
   })
-
+  
+  {
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
     </SessionProvider>    
     //<PageLayout />
   )
-}
+  }
