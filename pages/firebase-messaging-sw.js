@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
+import { getMessaging, getToken } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,8 +20,9 @@ function requestPermission() {
       const app = initializeApp(firebaseConfig);
 
       const messaging = getMessaging(app);
-      getToken(messaging, {vapidKey: "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54"})
-      .then((currentToken) => {
+      getToken(messaging, {
+        vapidKey: "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54",
+      }).then((currentToken) => {
         if (currentToken){
           console.log("currentToken: ", currentToken)
         }
@@ -36,5 +37,4 @@ function requestPermission() {
   });
 }
 
-export default firebase;
-
+requestPermission();
