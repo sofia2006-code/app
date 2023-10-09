@@ -120,3 +120,22 @@ export default function todolist() {
     )
 }*/
 
+export async function todolist(){
+    const [todos, setTodos]= useState([]);
+    const [dato, setTodo] = useState('')
+
+}
+
+{
+    return(
+        <>
+        <div>
+            <form>
+                <h2>Escriba su tarea</h2>
+                <input type="text" value={todo} onChange={e => setTodo(e.target.value)}></input>
+                
+            </form>
+        </div>
+        </>
+    )
+}
