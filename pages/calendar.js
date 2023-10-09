@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+/*import { createClient } from "@supabase/supabase-js";
 import React from "react";
 import App from './_app'
 import { ReactDOM } from "react-dom/client";
@@ -63,4 +63,4 @@ return(
     </div>
       
      
-)
+)*/
