@@ -10,7 +10,7 @@ const firebaseConfig = {
   messagingSenderId: "483956566609",
   appId: "1:483956566609:web:1b9cf5c78dec8520f3a670"
 };
-  
+/*  
 function requestPermission() {
   console.log("Requesting permission...");
   Notification.requestPermission().then((permission) => {
@@ -35,4 +35,4 @@ function requestPermission() {
   });
 }
 
-requestPermission();
+requestPermission();*/
