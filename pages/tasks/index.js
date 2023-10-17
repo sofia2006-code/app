@@ -68,34 +68,33 @@ export default function TasksPage() {
     setTask(e.target.value);
   };
 
-  const inputSubmit = (e) => {
+  const inputSubmit = (e) => {  
     e.preventDefault();
+    let task = " ";
     if (task.trim()) {
       setTasksArray([...tasksArray, task]);
       setTask('');
     }
-    /*else if(task.trim()){
-        Preguntarle a nacho como hacer que te tire error cuando no escribis nada
+    else if(task.trim().length === 0) {   
+      console.log("The string is empty");
     }
-    */
+    else {
+    console.log("The string is not empty");
+    }
   };
+  //fijarse el tema del trim 
 
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
     setTasksArray(tasksArray.filter((_, i) => i !== index));
-  };
-
-  /*
-  const deleteTask = async (task) => {
-      const response = await fetch('/api/configPomodoroPrisma', {
+    const response = await fetch('/api/configPomodoroPrisma', {
           method: 'DELETE',
       })
       const data = await response.json()
       console.log(data)
-      fetchtasks()
-      https://www.youtube.com/watch?v=je8jPi8KOY4 ==> tutorial de DELETE method
-  }*/
+      fetchTasks()
+  };
 
-
+  
   return (
     <div>
       <h1 > To-do List in Next.js </h1>
