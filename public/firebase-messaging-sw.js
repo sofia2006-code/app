@@ -21,7 +21,7 @@ function requestPermission() {
       const messaging = getMessaging(app);
       getToken(messaging, {
         vapidKey:
-          "BCKNSY0FAgDlbgevvqBGsXdadLiRCrFR1wbWXqFYgQJOV3jX8nTSHAQzXcB91c6GGlmFwCfCcxCUK_UxDL7nTLA",
+          "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54",
       }).then((currentToken) => {
         if (currentToken) {
           console.log("currentToken: ", currentToken);
