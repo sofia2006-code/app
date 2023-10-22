@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import React from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import '../public/firebase-messaging-sw.js'
+import { requestForToken } from '../public/firebase-messaging-sw.js'
 //import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 export default function App({
@@ -30,3 +30,12 @@ export default function App({
     //<PageLayout />
   )
   }
+
+ 
+//No anda, ¿necesito https para push notifications?
+/*
+const Notification = () => {
+  requestForToken();
+  //....
+ }
+ */
