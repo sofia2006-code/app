@@ -78,10 +78,10 @@ export async function handler(req, res){
             const cambiarTarea = await client.tareasPomodoro.update ({
                 where: {
                     userId: usuario.id,
-                    tarea: req.body.dato,
+                    tarea: req.body.data,
                 },
                 data: {
-                    tarea: req.body.dato2,
+                    tarea: req.body.data,
                 }
             })    
 
@@ -109,7 +109,7 @@ export async function handler(req, res){
         const borrarTarea = await client.tareasPomodoro.delete ({
           where: {
             userId: usuario.id,
-            tarea: req.body.dato as string,
+            tarea: req.body.data as string,
           },
         })
 

@@ -68,7 +68,7 @@ export default function TasksPage() {
   );
 }*/
 
-export default function tasks() {
+export default function Tasks() {
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
 
