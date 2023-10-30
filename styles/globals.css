@@ -22,3 +22,14 @@ a {
   box-sizing: border-box;
 }
 @import 'tailwindcss/tailwind.css';
+
+.qcy{
+  width: 100vw;
+  display:flex;
+  justify-content: end;
+}
+.qcy2{
+  width: 100vw;
+  display:flex;
+  justify-content: start;
+}
