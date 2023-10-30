@@ -95,9 +95,12 @@ export default function Tasks() {
     }
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
     setTasksArray(tasksArray.filter((_, i) => i !== index));
-    
+    const response = await fetch('/api/configPomodoroPrisma', {
+      method: 'DELETE',
+    })
+    .then(res => res.json()) // or res.json()
   };
 
   return (
