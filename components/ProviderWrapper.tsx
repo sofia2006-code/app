@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Navbar from './Navbar';
-import Porviders from './providers'
 import { SessionProvider } from 'next-auth/react';
 
 

@@ -118,7 +118,7 @@ export default function todolist() {
     return(
         <h1>Hi</h1>
     )
-}*/
+}
 
 export async function todolist(){
     const [todos, setTodos]= useState([]);
@@ -138,4 +138,4 @@ export async function todolist(){
         </div>
         </>
     )
-}
+}*/
