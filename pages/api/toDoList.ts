@@ -106,6 +106,7 @@ export async function handler(req, res){
 
     //borrar tarea
     else if (req.method === "DELETE") {
+        
         const borrarTarea = await client.tareasPomodoro.delete ({
           where: {
             userId: usuario.id,
