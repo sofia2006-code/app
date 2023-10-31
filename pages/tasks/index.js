@@ -104,11 +104,13 @@ export default function Tasks() {
     console.log(res)
   };
 
+  //Clases 
   return (
     <div>
+      <script src="../tasks.js"></script>
       <h1> To-do List in Next.js </h1>
       <form onSubmit={inputSubmit}>
-        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" />
+        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" />
         <button onClick={submitTask} type="submit">Add task</button>
       </form>
       <ul>
@@ -118,6 +120,17 @@ export default function Tasks() {
             <button onClick={() => handleDelete(index)}>Delete</button>
           </li>
         ))}
+        <select id="SelectClases">
+          <option value="Seleccionar Clase">Seleccionar Clase</option>
+          <option value="A">Clase A</option>
+          <option value="B">Clase B</option>
+          <option value="C">Clase C</option>
+        </select>
+
+        <p>Clase A</p> <p id="ClaseA"></p> <br/>
+        <p>Clase B</p> <p id="ClaseB"></p> <br/>
+        <p>Clase C</p> <p id="ClaseC"></p> <br/>
+
       </ul>
     </div>
   );
