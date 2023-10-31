@@ -1,7 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getMessaging, getToken } from "firebase/messaging";
+// Scripts for firebase and firebase messaging
+importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDuXf3ZrVRaQnaSswJY9yuzFPFiVgs7G54",
   authDomain: "pwa-cofocus.firebaseapp.com",
@@ -11,56 +12,19 @@ const firebaseConfig = {
   appId: "1:483956566609:web:1b9cf5c78dec8520f3a670"
 };
 
-//https://www.audreyhal.com/blog/push-notifications-with-firebase-in-react 
-/*
-initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-const messaging = getMessaging();
+// Retrieve firebase messaging
+const messaging = firebase.messaging();
 
-export const requestForToken = () => {
-    return getToken(messaging, { vapidKey: "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54" })
-      .then((currentToken) => {
-        if (currentToken) {
-          console.log('current token for client: ', currentToken);
-          // Perform any other neccessary action with the token
-        } else {
-          // Show permission request UI
-          console.log('No registration token available. Request permission to generate one.');
-        }
-      })
-      .catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-      });
+messaging.onBackgroundMessage(function(payload) {
+  console.log('Received background message ', payload);
+ // Customize notification here
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
   };
-*/
 
-//estop tampoco anda (viejo)
-/*
-function requestPermission() {
-  console.log("Requesting permission...");
-  Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-      console.log("Notification permission granted.");
-      const app = initializeApp(firebaseConfig);
-
-      const messaging = getMessaging(app);
-      getToken(messaging, {
-        vapidKey:
-          "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54",
-      }).then((currentToken) => {
-        if (currentToken) {
-          console.log("currentToken: ", currentToken);
-        } else {
-          console.log("Can not get token");
-        }
-      });
-    } else {
-      console.log("Do not have permission!");
-    }
-  });
-}
-
-requestPermission();
-*/
-
-
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});
