@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link';
+
 
 export default function index(){
     return(
@@ -14,7 +16,7 @@ export default function index(){
             <div className="qsy2">
                 <img src="/imagenes/textindex.png" alt="" />
             </div>
-            <button className="mt-12 px-10 py-3 text-xl font-semibold rounded-full bg-[#DF6B00] text-white">
+            <button href='/login' className="mt-12 px-10 py-3 text-xl font-semibold rounded-full bg-[#DF6B00] text-white">
             Empezar
             </button>
         </div>

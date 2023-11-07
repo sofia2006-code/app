@@ -107,7 +107,6 @@ export default function Tasks() {
   //Clases 
   return (
     <div>
-      <script src="../tasks.js"></script>
       <h1> To-do List in Next.js </h1>
       <form onSubmit={inputSubmit}>
         <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" />
