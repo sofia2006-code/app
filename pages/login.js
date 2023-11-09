@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFillLockFill } from "react-icons/bs"
 import Link from 'next/link';
 import Providers from '../components/Providers';
-import LoginBtn from '../components/loginBtn';
+import LoginBtn from '../components/LoginBtn';
 import Login from '../components/Login'
 
 export default function Home() {
