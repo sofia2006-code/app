@@ -1,9 +1,7 @@
-import NavBar from '../components/NavBar'
 
 export default function configuracion() {
     return (
         <>
-            <NavBar />
             <div className="relative bg-black h-24 text-white">
                 <h2 className="absolute font-semibold top-9 left-20 h-22 w-120">Nombre de Usuario</h2>
                 <img class="absolute top-7 left-4 h-10 w-10" src="Images/User.png"></img>

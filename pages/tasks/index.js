@@ -101,7 +101,7 @@ export default function Tasks() {
       method: 'DELETE',
     })
     .then(res => res.json()) // or res.json()
-    console.log(res)
+    console.log(res) 
   };
 
   //Clases 

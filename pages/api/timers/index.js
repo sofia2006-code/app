@@ -1,8 +1,8 @@
-import { timers } from "../../../data1/timers"
+/*import { data1 } from "../../../pages/timers"
 
 export default function handler(req, res) {
     if (req.method === 'GET') {
-        res.status(203).json(timers)
+        res.status(203).json(data1)
     }
     else if (req.method === 'POST') {
         const dato = req.body.dato
@@ -16,4 +16,4 @@ export default function handler(req, res) {
         timers.push(newTimer)
         res.status(204).json(newTimer)
     }
-}
+}*/
