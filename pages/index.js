@@ -16,9 +16,9 @@ export default function index(){
             <div className="qsy2">
                 <img src="/imagenes/textindex.png" alt="" />
             </div>
-            <button href='/login' className="mt-12 px-10 py-3 text-xl font-semibold rounded-full bg-[#DF6B00] text-white">
+            <a href='/login' className="mt-12 px-10 py-3 text-xl font-semibold rounded-full bg-[#DF6B00] text-white">
             Empezar
-            </button>
+            </a>
         </div>
     )
 }

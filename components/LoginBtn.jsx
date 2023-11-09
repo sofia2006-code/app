@@ -29,15 +29,17 @@ export default function LoginBtn() {
     if (session) {
       return (
         <>
-          <h2 className="text-white">Signed in as {session.user.email}</h2> <br />
+          <h2 className="text-white text-xl">Signed in as {session.user.email}</h2> <br />
           <button onClick={() => signOut()}>Sign out</button>
         </>
       )
     }
     return (
       <>
-        Not signed in <br />
-        <button onClick={() => signIn()}>Sign in</button>
+        <div className="text-white text-xl" >Not signed in</div> 
+        
+        <button className="r my-8 px-10 py-2 text-lg rounded-lg bg-gray-400 bg-opacity-30 text-stone-200  flex items-center
+      font-normal shadow-inner" onClick={() => signIn()}>Ingresa con Google</button>
       </>
     )
   }
