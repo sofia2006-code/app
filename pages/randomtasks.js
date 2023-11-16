@@ -2,53 +2,57 @@ import React, { useEffect, useState } from "react";
 
 export default function RandomTasks() {
   const [tasks, setTasks] = useState([
-    'Hacer la compra',
-    'Estudiar para el examen',
-    'Terminar el informe',
-    'Hacer ejercicio'
+    { name: 'Hacer la compra', displayTime: 300000 },
+    { name: 'Estudiar para el examen', displayTime: 5000 },
+    { name: 'Terminar el informe', displayTime: 7000 },
+    { name: 'Hacer ejercicio', displayTime: 4000 }
   ]);
 
-  const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [visibleTaskIndex, setVisibleTaskIndex] = useState(0);
+  const [remainingTime, setRemainingTime] = useState(tasks[0].displayTime);
+  const [timerStart, setTimerStart] = useState(Date.now());
 
   useEffect(() => {
-    const updateTaskStyle = (prevIndex) => {
-      let timeInterval = 5000; // Default interval for other tasks
-      console.log(timeInterval);
-      if (prevIndex === 0) {
-        timeInterval = 3000; // 3 seconds for the first task
-      } else if (prevIndex === 1) {
-        timeInterval = 9000; // 9 seconds for the second task
-      }
+    let timer;
+    let currentIndex = 0;
 
-      setVisibleTaskIndex(prevIndex); // Display the current task
+    const displayNextTask = () => {
+      setVisibleTaskIndex(currentIndex);
+      const nextIndex = (currentIndex + 1) % tasks.length;
+      setRemainingTime(tasks[nextIndex].displayTime);
+      setTimerStart(Date.now());
 
-      setCurrentTaskIndex((prevIndex) => {
-        if (prevIndex === tasks.length - 1) {
-          return 0; // Reset to the beginning if reached the end of tasks
-        }
-        return prevIndex + 1;
-      });
-
-      return timeInterval;
+      timer = setTimeout(() => {
+        currentIndex = nextIndex;
+        displayNextTask();
+      }, tasks[currentIndex].displayTime);
     };
 
-    const timer = setInterval(() => {
-      const newInterval = updateTaskStyle(currentTaskIndex);
-      setTimeout(() => {
-        updateTaskStyle(currentTaskIndex);
-      }, newInterval);
-    }, 5000); // Change every 5 seconds
+    displayNextTask();
 
-    return () => clearInterval(timer);
-  }, [tasks.length, currentTaskIndex]);
+    return () => clearTimeout(timer);
+  }, [tasks]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const elapsedTime = Date.now() - timerStart;
+      const updatedRemainingTime = tasks[visibleTaskIndex].displayTime - elapsedTime;
+      setRemainingTime(updatedRemainingTime >= 0 ? updatedRemainingTime : 0);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timerStart, visibleTaskIndex, tasks]);
 
   function displayTasks() {
+    const minutes = Math.floor(remainingTime / 60000);
+    const seconds = ((remainingTime % 60000) / 1000).toFixed(0).padStart(2, '0');
+
     return (
       <div>
         {tasks.map((task, index) => (
           <div key={index} style={{ display: index === visibleTaskIndex ? 'block' : 'none' }}>
-            {task}
+            <p>{task.name}</p>
+            <p>Remaining Time: {minutes.toString().padStart(2, '0')} : {seconds}</p>
           </div>
         ))}
       </div>
