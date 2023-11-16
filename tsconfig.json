@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/calendar/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]

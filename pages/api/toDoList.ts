@@ -27,7 +27,7 @@ export async function handler(req, res){
             email: session.user.email,
         }
     })
-
+        
     //conseguir todas las tareas
     if (req.method === "GET") {
         const tareas = await client.tareasPomodoro.findMany({

@@ -72,6 +72,7 @@ export default function Tasks() {
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
 
+
   const submitTask = async() => {
     const response = await fetch ('/api/configPomodoroPrisma', {
         method: 'POST',
@@ -116,7 +117,6 @@ export default function Tasks() {
       <ul>
         {tasksArray.map((task, index) => (
           <li key={index}>
-            {task}
             <button onClick={() => handleDelete(index)}>Delete</button>
           </li>
         ))}
