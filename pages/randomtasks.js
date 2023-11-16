@@ -2,56 +2,66 @@ import React, { useEffect, useState } from "react";
 
 export default function RandomTasks() {
   const [tasks, setTasks] = useState([
-    { name: 'Hacer la compra', displayTime: 300000 },
+    { name: 'Hacer la compra', displayTime: 3000 },
     { name: 'Estudiar para el examen', displayTime: 5000 },
     { name: 'Terminar el informe', displayTime: 7000 },
     { name: 'Hacer ejercicio', displayTime: 4000 }
   ]);
 
-  const [visibleTaskIndex, setVisibleTaskIndex] = useState(0);
+  const [breaks, setBreaks] = useState([
+    { name: '¡Muy Bien! descansa 5 minutos', displayTime: 5000 },
+    { name: 'Anda a dar una vuelta', displayTime: 400 },
+    { name: 'Sé libre deja el colegio', displayTime: 400 },
+  ]);
+
+  const [visibleItemIndex, setVisibleItemIndex] = useState(0);
+  const [isTask, setIsTask] = useState(true);
   const [remainingTime, setRemainingTime] = useState(tasks[0].displayTime);
   const [timerStart, setTimerStart] = useState(Date.now());
 
   useEffect(() => {
     let timer;
     let currentIndex = 0;
+    const items = isTask ? tasks : breaks;
 
-    const displayNextTask = () => {
-      setVisibleTaskIndex(currentIndex);
-      const nextIndex = (currentIndex + 1) % tasks.length;
-      setRemainingTime(tasks[nextIndex].displayTime);
+    const displayNextItem = () => {
+      setVisibleItemIndex(currentIndex);
+      const selectedItem = items[currentIndex];
+      setRemainingTime(selectedItem.displayTime);
       setTimerStart(Date.now());
 
       timer = setTimeout(() => {
-        currentIndex = nextIndex;
-        displayNextTask();
-      }, tasks[currentIndex].displayTime);
+        currentIndex = (currentIndex + 1) % items.length;
+        setIsTask(!isTask);
+        displayNextItem();
+      }, selectedItem.displayTime);
     };
 
-    displayNextTask();
+    displayNextItem();
 
     return () => clearTimeout(timer);
-  }, [tasks]);
+  }, [tasks, breaks, isTask]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const elapsedTime = Date.now() - timerStart;
-      const updatedRemainingTime = tasks[visibleTaskIndex].displayTime - elapsedTime;
+      const updatedRemainingTime = remainingTime - elapsedTime;
       setRemainingTime(updatedRemainingTime >= 0 ? updatedRemainingTime : 0);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerStart, visibleTaskIndex, tasks]);
+  }, [timerStart, remainingTime]);
 
-  function displayTasks() {
+  function displayItems() {
     const minutes = Math.floor(remainingTime / 60000);
     const seconds = ((remainingTime % 60000) / 1000).toFixed(0).padStart(2, '0');
+    const itemsToShow = isTask ? tasks : breaks;
 
     return (
       <div>
-        {tasks.map((task, index) => (
-          <div key={index} style={{ display: index === visibleTaskIndex ? 'block' : 'none' }}>
-            <p>{task.name}</p>
+        {itemsToShow.map((item, index) => (
+          <div key={index} style={{ display: index === visibleItemIndex ? 'block' : 'none' }}>
+            <p>{item.name}</p>
             <p>Remaining Time: {minutes.toString().padStart(2, '0')} : {seconds}</p>
           </div>
         ))}
@@ -62,7 +72,7 @@ export default function RandomTasks() {
   return (
     <>
       <h1>Lista de Tareas</h1>
-      <div>{displayTasks()}</div>
+      <div>{displayItems()}</div>
     </>
   );
 }
