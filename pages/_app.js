@@ -3,13 +3,13 @@ import '../styles/globals.css'
 import React from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { requestForToken } from '../public/firebase-messaging-sw.js'
+import useFirebase, { requestForToken } from '../Firebase/firebase.js'
 //import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
-}) 
+})
 /*
 {
   React.useEffect(()=>{
@@ -20,22 +20,21 @@ export default function App({
       console.warn("token", data)
     })
   })
-  */
-  
-  {
+  */ {
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
-    </SessionProvider>    
+    </SessionProvider>
     //<PageLayout />
   )
-  }
+}
 
- 
+
 //No anda, ¿necesito https para push notifications?
-/*
+
 const Notification = () => {
+  const { requestForToken } = useFirebase();
+
   requestForToken();
   //....
- }
- */
+}
