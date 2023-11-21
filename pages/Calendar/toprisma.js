@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+/*import { google } from 'googleapis';
 import prisma from '../path/to/prismaInstance'; // Import your Prisma instance
 
 // ... OAuth setup as mentioned earlier
@@ -27,4 +27,4 @@ for (const event of events) {
       // ... map other event properties to your Prisma model fields
     },
   });
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { useEffect, useState } from "react";
@@ -56,34 +57,5 @@ const useFirebase = () => {
 }
 
 export default useFirebase;
-
-//estop tampoco anda (viejo)
-/*
-function requestPermission() {
-  console.log("Requesting permission...");
-  Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-      console.log("Notification permission granted.");
-      const app = initializeApp(firebaseConfig);
-
-      const messaging = getMessaging(app);
-      getToken(messaging, {
-        vapidKey:
-          "BNPYLNnUjhKDPOZmxUCvw9ILv5c2D4vgkXppb2ELg37f-hOLi032gP_r1PXvG0f3WsEsy-UNwPXJRftLFeG0j54",
-      }).then((currentToken) => {
-        if (currentToken) {
-          console.log("currentToken: ", currentToken);
-        } else {
-          console.log("Can not get token");
-        }
-      });
-    } else {
-      console.log("Do not have permission!");
-    }
-  });
-}
-
-requestPermission();
 */
-
 
