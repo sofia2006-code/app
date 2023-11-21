@@ -33,3 +33,27 @@ a {
   display:flex;
   justify-content: start;
 }
+.qcy3{
+  border-bottom: 2px grey solid;
+}
+.qcy4{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  color:black;
+  background-color: #220BA9B2;
+}
+.qcy5{
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.help{
+  height:100vh;
+  display:grid;
+  grid-template-columns: 100%;
+}
+/* .lognbtn{
+  /* r my-8 px-10 py-2 text-lg rounded-lg bg-gray-400 bg-opacity-30 text-stone-200 flex items-center
+      font-normal shadow-inner px-7 py-2 text-lg rounded-lg bg-gray-400 bg-opacity-30 text-stone-200 flex items-center
+      font-normal shadow-inner */
