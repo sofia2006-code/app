@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 
-export default function RandomTasks() {
-  const [tasks, setTasks] = useState([
-    { name: 'Hacer la compra', displayTime: 3000 },
-    { name: 'Estudiar para el examen', displayTime: 5000 },
-    { name: 'Terminar el informe', displayTime: 7000 },
-    { name: 'Hacer ejercicio', displayTime: 4000 }
-  ]);
+const defaultTasks = [
+  { name: 'Hacer la compra', displayTime: 3000 },
+  { name: 'Estudiar para el examen', displayTime: 5000 },
+  { name: 'Terminar el informe', displayTime: 7000 },
+  { name: 'Hacer ejercicio', displayTime: 4000 }
+];
 
-  const [breaks, setBreaks] = useState([
-    { name: '¡Muy Bien! descansa 5 minutos', displayTime: 5000 },
-    { name: 'Anda a dar una vuelta', displayTime: 400 },
-    { name: 'Sé libre deja el colegio', displayTime: 400 },
-  ]);
+const defaultBreaks = [
+  { name: '¡Muy Bien! descansa 5 minutos', displayTime: 5000 },
+  { name: 'Anda a dar una vuelta', displayTime: 400 },
+  { name: 'Sé libre deja el colegio', displayTime: 400 },
+];
+
+export default function RandomTasks() {
+  const [tasks, setTasks] = useState(defaultTasks);
+  const [breaks, setBreaks] = useState(defaultBreaks);
 
   const [visibleItemIndex, setVisibleItemIndex] = useState(0);
   const [isTask, setIsTask] = useState(true);
-  const [remainingTime, setRemainingTime] = useState(tasks[0].displayTime);
-  const [timerStart, setTimerStart] = useState(Date.now());
+  const [remainingTime, setRemainingTime] = useState(0);
+  const [timerStart, setTimerStart] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -37,20 +41,24 @@ export default function RandomTasks() {
       }, selectedItem.displayTime);
     };
 
-    displayNextItem();
+    if (isRunning) {
+      displayNextItem();
+    }
 
     return () => clearTimeout(timer);
-  }, [tasks, breaks, isTask]);
+  }, [tasks, breaks, isTask, isRunning]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const elapsedTime = Date.now() - timerStart;
-      const updatedRemainingTime = remainingTime - elapsedTime;
-      setRemainingTime(updatedRemainingTime >= 0 ? updatedRemainingTime : 0);
+      if (isRunning) {
+        const elapsedTime = Date.now() - timerStart;
+        const updatedRemainingTime = remainingTime - elapsedTime;
+        setRemainingTime(updatedRemainingTime >= 0 ? updatedRemainingTime : 0);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerStart, remainingTime]);
+  }, [timerStart, remainingTime, isRunning]);
 
   function displayItems() {
     const minutes = Math.floor(remainingTime / 60000);
@@ -69,10 +77,19 @@ export default function RandomTasks() {
     );
   }
 
+  const handleStart = () => {
+    setIsRunning(true);
+  };
+
   return (
     <>
       <h1>Lista de Tareas</h1>
-      <div>{displayItems()}</div>
+      {!isRunning && (
+        <button onClick={handleStart}>Start</button>
+      )}
+      {isRunning && (
+        <div>{displayItems()}</div>
+      )}
     </>
   );
 }
