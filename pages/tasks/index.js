@@ -41,6 +41,18 @@ export default function Tasks() {
     const updatedTasks = [...tasksArray];
     updatedTasks.splice(index, 1);
     setTasksArray(updatedTasks);
+
+    // Perform the delete action here
+    const response = await fetch('/api/deleteTask', {
+      method: 'DELETE',
+      body: JSON.stringify({ /* pass any necessary data */ }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const result = await response.json();
+    console.log(result); // Handle the result as needed
   };
 
   const handleClassChange = (e) => {
@@ -61,6 +73,7 @@ export default function Tasks() {
         <option value="C">Clase C</option>
       </select>
 
+      {/* Render tasks and delete button here */}
       <div>
         <p>Clase A</p>
         <p id="ClaseA">
