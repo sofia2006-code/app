@@ -33,7 +33,7 @@ function askPermission() {
 //Suscribir a usuario 
 export function subscribeUserToPush() {
   void navigator.serviceWorker
-    .register("./push-sw.js") // que es este archivo o esto?
+    .register("../public/service-worker.js") // hay que ver si esta bien enrutado
     .then(function (registration) {
       const subscribeOptions = {
         userVisibleOnly: true,
