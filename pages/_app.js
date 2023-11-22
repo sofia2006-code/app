@@ -42,7 +42,7 @@ const Notification = () => {
 */
 
 
-/*
+
 function sendSubscriptionToBackEnd(subscription) {
   return fetch('/api/save-subscription/', {
     method: 'POST',
@@ -64,5 +64,5 @@ function sendSubscriptionToBackEnd(subscription) {
       }
     });
 }
-*/
+
 

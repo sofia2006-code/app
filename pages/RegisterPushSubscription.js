@@ -1,7 +1,7 @@
 //registrar SW
 export function registerServiceWorker() {
   return navigator.serviceWorker
-    .register("service-worker.js") //deberia tener un archivo service-worker.js con el sw, DOCUMENTACION NO DICE COMO, DONDE O QUE PONERLE
+    .register("../public/service-worker.js") //hay que ver si esta bien enrutado
     .then(function (registration) {
       return registration;
     })
