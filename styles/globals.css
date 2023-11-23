@@ -5,6 +5,19 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/*
+@import '../node_modules/@syncfunction/ej2-react-schedule/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-base/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfunction/ej2-lists/styles/material.css';
+*/
+
+
 html,
 body {
   padding: 0;

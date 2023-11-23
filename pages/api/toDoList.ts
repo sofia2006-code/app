@@ -111,7 +111,7 @@ export default async function handler(req, res){
         const borrarTarea = await client.tareasPomodoro.delete ({
           where: {
             userId: usuario.id,
-            tarea: req.body.data as string,
+            tarea: req.body.dato as string,
           },
         })
 

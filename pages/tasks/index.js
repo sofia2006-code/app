@@ -10,6 +10,21 @@ export default function Tasks() {
     B: '',
     C: ''
   });
+  
+  /*
+  useEffect(() => {
+    const getTasks = async () => {
+      try {
+        const tasks = await fetchTasks();
+        setTasksArray(tasks);
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching tasks:', error);
+      }
+    };
+
+    getTasks();
+  }, []);*/
 
   const submitTask = async () => {
     const response = await fetch('../api/toDoList', {
@@ -38,15 +53,16 @@ export default function Tasks() {
     }
   };
 
+
   const handleDelete = async (index) => {
     const updatedTasks = [...tasksArray];
     updatedTasks.splice(index, 1);
     setTasksArray(updatedTasks);
 
     // Perform the delete action here
-    const response = await fetch('/api/deleteTask', {
+    const response = await fetch('/api/toDoList', {
       method: 'DELETE',
-      body: JSON.stringify({ /* pass any necessary data */ }),
+      body: JSON.stringify({ dato:tasksArray[index].task }),
       headers: {
         'Content-Type': 'application/json'
       }
