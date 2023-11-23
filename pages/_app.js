@@ -3,8 +3,9 @@ import '../styles/globals.css'
 import React from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import useFirebase from '../Firebase/firebase.js'
-import requestForToken from '../Firebase/firebase.js'
+//import '../Firebase/firebase.js'
+ import useFirebase from '../Firebase/firebase.js'
+ import requestForToken from '../Firebase/firebase.js'
 //import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 export default function App({
@@ -24,14 +25,12 @@ export default function App({
   */ {
   return (
     <SessionProvider session={session}>
+      <Notification/>
       <Component {...pageProps} />
     </SessionProvider>
     //<PageLayout />
   )
 }
-
-
-//No anda, ¿necesito https para push notifications?
 
 
 /*
@@ -42,7 +41,7 @@ const Notification = () => {
 */
 
 
-
+/*
 function sendSubscriptionToBackEnd(subscription) {
   return fetch('/api/save-subscription/', {
     method: 'POST',
@@ -64,5 +63,6 @@ function sendSubscriptionToBackEnd(subscription) {
       }
     });
 }
+*/
 
 
