@@ -61,7 +61,7 @@ export default function Tasks() {
     // Perform the delete action here
     const response = await fetch('../api/toDoList', {
       method: 'DELETE',
-      body: JSON.stringify({ dato:tasksArray[index].task }),
+      body: JSON.stringify({ dato:task }),
       headers: {
         'Content-Type': 'application/json'
       }
