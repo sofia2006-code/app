@@ -3,6 +3,8 @@ import '../styles/globals.css'
 import React from 'react'
 import { SessionProvider } from "next-auth/react"
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject } from '@syncfusion/ej2-react-schedule';
+
 //import '../Firebase/firebase.js'
  import useFirebase from '../Firebase/firebase.js'
  import requestForToken from '../Firebase/firebase.js'

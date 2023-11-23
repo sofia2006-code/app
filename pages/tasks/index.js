@@ -29,7 +29,7 @@ export default function Tasks() {
   const submitTask = async () => {
     const response = await fetch('../api/toDoList', {
       method: 'POST',
-      body: JSON.stringify({ dato:task, tipo: "tarea" }), //en dato poner classText[selectedClass]
+      body: JSON.stringify({ dato:task, tipo: "tarea", clase:"A"  }), //en dato poner classText[selectedClass]
       headers: {
         'Content-Type': 'application/json'
       }
@@ -53,16 +53,15 @@ export default function Tasks() {
     }
   };
 
-
   const handleDelete = async (index) => {
     const updatedTasks = [...tasksArray];
     updatedTasks.splice(index, 1);
     setTasksArray(updatedTasks);
 
     // Perform the delete action here
-    const response = await fetch('/api/toDoList', {
+    const response = await fetch('../api/toDoList', {
       method: 'DELETE',
-      body: JSON.stringify({ dato:tasksArray[index].task }),
+      body: JSON.stringify({ dato:task }),
       headers: {
         'Content-Type': 'application/json'
       }
