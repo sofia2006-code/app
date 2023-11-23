@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navigations from '../../components/navigations';
 
 export default function Tasks() {
   const [task, setTask] = useState('');
@@ -60,13 +61,14 @@ export default function Tasks() {
   };
 
   return (
-    <div>
-      <h1> To-do List in Next.js </h1>
+    <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
+      <Navigations openConf={false}/>
+      <h1 className="grid justify-items-center text-xl"> Mis tareas  </h1>
       <form onSubmit={inputSubmit}>
-        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" />
+        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" className="text-black"/>
         <button onClick={submitTask} type="submit">Add task</button>
       </form>
-      <select id="SelectClases" onChange={handleClassChange} value={selectedClass}>
+      <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className="text-black">
         <option value="Seleccionar Clase">Seleccionar Clase</option>
         <option value="A">Clase A</option>
         <option value="B">Clase B</option>
@@ -75,7 +77,7 @@ export default function Tasks() {
 
       {/* Render tasks and delete button here */}
       <div>
-        <p>Clase A</p>
+        <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
         <p id="ClaseA">
           {tasksArray.map((taskObj, index) => (
             taskObj.class === 'A' && (

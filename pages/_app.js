@@ -25,7 +25,6 @@ export default function App({
   */ {
   return (
     <SessionProvider session={session}>
-      <Notification/>
       <Component {...pageProps} />
     </SessionProvider>
     //<PageLayout />
