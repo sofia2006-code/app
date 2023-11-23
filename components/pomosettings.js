@@ -1,12 +1,11 @@
 
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { FiX } from "react-icons/fi";
-import { useRef } from 'react'
 
 function PomoSettings({
-  pomodoroRef,
-  longBreakRef,
-  shortBreakRef,
+  setPomodoro,
+  setShortBreak,
+  setLongBreak,
   openSettings,
   setOpenSettings,
   updateTimeDefaultValue
@@ -19,19 +18,19 @@ function PomoSettings({
   const options = [
     {
       value: "Pomodoro",
-      ref: pomodoroRef,
+      setter: setPomodoro,
       defaultValue: 25,
     },
 
     {
       value: "Short Break",
-      ref: shortBreakRef,
+      setter: setShortBreak,
       defaultValue: 5,
     },
 
     {
       value: "Long Break",
-      ref: longBreakRef,
+      setter: setLongBreak,
       defaultValue: 10,
     }
   ];
@@ -51,7 +50,7 @@ function PomoSettings({
         >
           <div className="text-gray-400 flex justify-between items-center">
             <h1 className="uppercase font-bold tracking-wider">Time setting</h1>
-            <FiX className="text-2xl" cursor-pointer onClick={()=> setOpenSettings(false)}/>
+            <FiX className="text-2xl" cursor-pointer onClick={() => setOpenSettings(false)} />
           </div>
           {/* linea simple */}
           <div className="h-1 w-fill bg-gray-400 mt-5 mb-5"></div>
@@ -68,15 +67,17 @@ function PomoSettings({
                       type="number"
                       className="w-full bg-gray-400 bg-opacity-30 py-2 rounded outline-none
                     text-center"
-                      ref={input.ref}
+                      onChange={(e) => {
+                        input.setter(e.target.value);
+                      }}
                     />
                   </div>
                 </div>);
 
             })}
           </div>
-          <button className="bg-orange-600 uppercase w-full mt-5 text-white rounded py-2" 
-          onClick={updateTimeDefaultValue}>
+          <button className="bg-orange-600 uppercase w-full mt-5 text-white rounded py-2"
+            onClick={updateTimeDefaultValue}>
             Save
           </button>
         </div>
@@ -85,4 +86,4 @@ function PomoSettings({
   )
 }
 
-export default React.forwardRef(PomoSettings);
+export default forwardRef(PomoSettings);

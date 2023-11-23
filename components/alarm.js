@@ -1,4 +1,5 @@
 import React from 'react'
+import { forwardRef } from 'react';
 
 const Alarm = (_, ref) => {
     return (
@@ -9,4 +10,4 @@ const Alarm = (_, ref) => {
     );
 }
 
-export default Alarm;
+export default forwardRef(Alarm);
