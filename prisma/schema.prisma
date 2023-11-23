@@ -25,6 +25,7 @@ model tiempoPomodoro {
 model tareasPomodoro {
   id         String  @id @default(uuid())
   tarea      String  @unique
+  clase      String
   completado Boolean
   User       User    @relation(fields: [userId], references: [id])
   userId     String

@@ -49,12 +49,13 @@ export default async function handler(req, res){
                     data: {
                         userId: usuario.id,
                         tarea: req.body.dato as string, 
+                        clase: req.body.clase as string,
                         completado: false,
                      },
                 })    
 
-                console.log("Tarea creada: \n", crearTarea);
-                res.status(200).json(crearTarea.tarea);
+                console.log("Tarea creada: \n", crearTarea, "clase: \n", crearTarea.clase);
+                res.status(200).json(crearTarea.tarea, crearTarea.clase);
             } 
             //Tirar error si tarea ya existe
             catch (e) {
