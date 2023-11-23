@@ -81,6 +81,10 @@ export default function RandomTasks() {
     setIsRunning(true);
   };
 
+  const handleStop = () => {
+    setIsRunning(false);
+  };
+
   return (
     <>
       <h1>Lista de Tareas</h1>
@@ -88,7 +92,10 @@ export default function RandomTasks() {
         <button onClick={handleStart}>Start</button>
       )}
       {isRunning && (
-        <div>{displayItems()}</div>
+        <div>
+          <button onClick={handleStop}>Stop</button>
+          {displayItems()}
+        </div>
       )}
     </>
   );
