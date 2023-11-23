@@ -54,7 +54,7 @@ export default async function handler(req, res){
                      },
                 })    
 
-                console.log("Tarea creada: \n", crearTarea, "clase: \n", crearTarea.clase);
+                console.log("Tarea creada: \n", crearTarea);
                 res.status(200).json(crearTarea.tarea, crearTarea.clase);
             } 
             //Tirar error si tarea ya existe
