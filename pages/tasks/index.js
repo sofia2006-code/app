@@ -12,9 +12,9 @@ export default function Tasks() {
   });
 
   const submitTask = async () => {
-    const response = await fetch('/api/configPomodoroPrisma', {
+    const response = await fetch('../api/toDoList', {
       method: 'POST',
-      body: JSON.stringify({ dato: classText[selectedClass], tipo: "tarea" }),
+      body: JSON.stringify({ dato:task, tipo: "tarea" }), //en dato poner classText[selectedClass]
       headers: {
         'Content-Type': 'application/json'
       }

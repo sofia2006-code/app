@@ -33,14 +33,6 @@ export default function App({
 
 
 /*
-const Notification = () => {
-  requestForToken();
-  //....
-}
-*/
-
-
-/*
 function sendSubscriptionToBackEnd(subscription) {
   return fetch('/api/save-subscription/', {
     method: 'POST',

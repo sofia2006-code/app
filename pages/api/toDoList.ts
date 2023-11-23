@@ -14,12 +14,11 @@ const client = new PrismaClient;
 //   }
 
 //esperar front
-export async function handler(req, res){
+export default async function handler(req, res){
     
     console.log (req.body, "\n");
 
     const session = await getServerSession(req, res, authOptions);
-    console.log(session);
 
     //Conseguir usuario loggeado
     const usuario = await client.user.findFirst ({
@@ -42,32 +41,34 @@ export async function handler(req, res){
 
     //Crear tarea
     else if (req.method === "POST") {
-        
-        try {
-            const crearTarea = await client.tareasPomodoro.create({
-                data: {
-                    userId: usuario.id,
-                    tarea: req.body.data as string, 
-                    completado: false,
-                 },
-            }) 
+        //crear tarea
+        if (req.body.tipo == "tarea") {
+            
+            try {
+                const crearTarea = await client.tareasPomodoro.create({
+                    data: {
+                        userId: usuario.id,
+                        tarea: req.body.dato as string, 
+                        completado: false,
+                     },
+                })    
 
-            console.log("Tarea creada: \n", crearTarea);
-            res.status(200).json(crearTarea.tarea);
-        } 
-        //Tirar error si tarea ya existe
-        catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-              // The .code property can be accessed in a type-safe manner
-              if (e.code === 'P2002') {
-                console.log(
-                  'Unique constraint violation, la tarea ya existe'
-                )
-                res.status(400).json({message: 'P2002'});
-              }
+                console.log("Tarea creada: \n", crearTarea);
+                res.status(200).json(crearTarea.tarea);
+            } 
+            //Tirar error si tarea ya existe
+            catch (e) {
+                if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                  if (e.code === 'P2002') {
+                    console.log(
+                      'Unique constraint violation, la tarea ya existe'
+                    )
+                    res.status(400).json({message: 'P2002'});
+                  }
+                }
+                //throw e
             }
-            //throw e
-        }
+        }    
     }
 
     //actualizar tarea (chequear que dato me llego)

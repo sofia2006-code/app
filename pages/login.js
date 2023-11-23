@@ -147,7 +147,6 @@ export default function Home() {
     <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F]  min-h-screen min-w-screen flex flex-col  items-center">
       <script async defer src="https://apis.google.com/js/api.js" onload={gapiLoaded} />
       <script async defer src="https://accounts.google.com/gsi/client" onload={gisLoaded} />
-      <button id="authorize_button w-20 h-10 bg-red-500" onclick={handleAuthClick}>Authorize</button>
       <Navigations openConf={false} />
       <h1 className="font-medium text-5xl px-8 py-10 text-white"> Ingresá a tu cuenta </h1>
       <LoginBtn> <FcGoogle className='mr-2' /></LoginBtn>
