@@ -57,7 +57,6 @@ export default async function handler(req, res){
                             userId: usuario.id,
                             tarea: req.body.dato as string, 
                             clase: req.body.clase as string,
-                            completado: false,
                          },
                     })    
     
