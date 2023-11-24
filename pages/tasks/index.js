@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { data } from "autoprefixer";
+import React, { useState, useEffect } from "react";
 import Navigations from '../../components/navigations';
 
 export default function Tasks() {
@@ -10,7 +11,8 @@ export default function Tasks() {
     B: '',
     C: ''
   });
-  
+
+    
   /*
   useEffect(() => {
     const getTasks = async () => {
@@ -34,9 +36,19 @@ export default function Tasks() {
         'Content-Type': 'application/json'
       }
     });
-
+    /*
     const data = await response.json();
     console.log(data);
+
+    const respone = await fetch(endpoint, options)
+
+    if(!response.ok){
+      console.log("ERROR")
+      const result =await response.json()
+      alert()
+    }
+
+*/
   };
 
   const inputChange = (e) => {
@@ -61,7 +73,7 @@ export default function Tasks() {
     // Perform the delete action here
     const response = await fetch('../api/toDoList', {
       method: 'DELETE',
-      body: JSON.stringify({ dato:task }),
+      body: JSON.stringify({ dato:task, clase:selectedClass }),
       headers: {
         'Content-Type': 'application/json'
       }
