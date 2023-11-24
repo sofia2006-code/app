@@ -44,31 +44,40 @@ export default async function handler(req, res){
         //crear tarea
         if (req.body.tipo == "tarea") {
             
-            try {
-                const crearTarea = await client.tareasPomodoro.create({
-                    data: {
-                        userId: usuario.id,
-                        tarea: req.body.dato as string, 
-                        clase: req.body.clase as string,
-                        completado: false,
-                     },
-                })    
+            if (req.body.dato == "" || req.body.clase == "Seleccionar Clase") {
+                console.log("Tarea o clase vacia");
+                res.status(400).json({message: 'Vacio'});
 
-                console.log("Tarea creada: \n", crearTarea);
-                res.status(200).json(crearTarea.tarea, crearTarea.clase);
-            } 
-            //Tirar error si tarea ya existe
-            catch (e) {
-                if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                  if (e.code === 'P2002') {
-                    console.log(
-                      'Unique constraint violation, la tarea ya existe'
-                    )
-                    res.status(400).json({message: 'P2002'});
-                  }
-                }
-                //throw e
             }
+
+            else {
+                try {
+                    const crearTarea = await client.tareasPomodoro.create({
+                        data: {
+                            userId: usuario.id,
+                            tarea: req.body.dato as string, 
+                            clase: req.body.clase as string,
+                            completado: false,
+                         },
+                    })    
+    
+                    console.log("Tarea creada: \n", crearTarea);
+                    res.status(200).json(crearTarea.tarea, crearTarea.clase);
+                } 
+                //Tirar error si tarea ya existe
+                catch (e) {
+                    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                      if (e.code === 'P2002') {
+                        console.log(
+                          'Unique constraint violation, la tarea ya existe'
+                        )
+                        res.status(400).json({message: 'P2002'});
+                      }
+                    }
+                    //throw e
+                }
+            }
+            
         }    
     }
 
