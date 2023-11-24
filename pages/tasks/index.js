@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navigations from '../../components/navigations';
 
 export default function Tasks() {
+  const [date, setDate] = useState('')
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
   const [selectedClass, setSelectedClass] = useState('Seleccionar Clase');
@@ -12,7 +13,6 @@ export default function Tasks() {
     C: ''
   });
 
-    
   
   useEffect(() => {
     const getTasks = async () => {
@@ -30,7 +30,7 @@ export default function Tasks() {
   const submitTask = async () => {
     const response = await fetch('../api/toDoList', {
       method: 'POST',
-      body: JSON.stringify({ dato:task, tipo: "tarea", clase:selectedClass }), //en dato poner classText[selectedClass]
+      body: JSON.stringify({ dato:task, tipo: "tarea", clase:selectedClass, date:date }), //en dato poner classText[selectedClass]
       headers: {
         'Content-Type': 'application/json'
       }
@@ -54,6 +54,10 @@ export default function Tasks() {
 
   const inputChange = (e) => {
     setTask(e.target.value);
+  };
+
+  const dateChange = (e) => {
+    setDate(e.target.value);
   };
 
   const inputSubmit = (e) => {
@@ -102,6 +106,10 @@ export default function Tasks() {
         <option value="B">Clase B</option>
         <option value="C">Clase C</option>
       </select>
+      <br/>
+      <input className="text-black" onChange={dateChange} type="date"/>
+
+
 
       {/* Render tasks and delete button here */}
       <div>
