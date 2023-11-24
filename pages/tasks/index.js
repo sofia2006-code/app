@@ -13,20 +13,19 @@ export default function Tasks() {
   });
 
     
-  /*
+  
   useEffect(() => {
     const getTasks = async () => {
-      try {
-        const tasks = await fetchTasks();
-        setTasksArray(tasks);
-      } catch (error) {
-        // Handle errors if needed
-        console.error('Error fetching tasks:', error);
-      }
-    };
+      const response = await fetch('../api/toDoList', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
 
     getTasks();
-  }, []);*/
+  }, []);
 
   const submitTask = async () => {
     const response = await fetch('../api/toDoList', {
@@ -36,6 +35,8 @@ export default function Tasks() {
         'Content-Type': 'application/json'
       }
     });
+
+    
     /*
     const data = await response.json();
     console.log(data);

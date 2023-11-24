@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import {Image} from 'next/image';
 
 /*const SignInbutton = () => {
     const { data: session } = useSession();
@@ -29,8 +30,17 @@ export default function LoginBtn() {
     if (session) {
       return (
         <>
-          <h2 className="text-white text-xl">Signed in as {session.user.email}</h2> <br />
+          <img
+          src={session.user.image}
+          alt="Picture of the author"
+          // width={500} automatically provided
+          // height={500} automatically provided
+          // blurDataURL="data:..." automatically provided
+          // placeholder="blur" // Optional blur-up while loading
+          />
+          <h2 className="text-white text-xl">Signed in as {session.user.name}</h2> <br />
           <button onClick={() => signOut()}>Sign out</button>
+          
         </>
       )
     }
