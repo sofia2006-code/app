@@ -36,7 +36,7 @@ export default async function handler(req, res){
         })
     
         console.log("Tareas: \n", tareas);
-        res.status(200).json(tareas);
+        res.status(200).json({tareas: tareas});
     }
 
     //Crear tarea
@@ -44,9 +44,9 @@ export default async function handler(req, res){
         //crear tarea
         if (req.body.tipo == "tarea") {
             
-            if (req.body.dato == "" || req.body.clase == "Seleccionar Clase") {
+            if (req.body.dato == "" || req.body.clase == "Seleccionar Clase" || req.body.date == "") {
                 console.log("Tarea o clase vacia");
-                res.status(400).json({message: 'Vacio'});
+                res.status(400).json({error: 'vacio'});
 
             }
 
@@ -57,11 +57,16 @@ export default async function handler(req, res){
                             userId: usuario.id,
                             tarea: req.body.dato as string, 
                             clase: req.body.clase as string,
+                            fecha: req.body.date as string,
                          },
                     })    
     
                     console.log("Tarea creada: \n", crearTarea);
-                    res.status(200).json(crearTarea.tarea, crearTarea.clase);
+                    res.status(200).json({
+                        tarea: crearTarea.tarea, 
+                        clase: crearTarea.clase,
+                        fecha: crearTarea.fecha,
+                    });
                 } 
                 //Tirar error si tarea ya existe
                 catch (e) {
@@ -70,7 +75,7 @@ export default async function handler(req, res){
                         console.log(
                           'Unique constraint violation, la tarea ya existe'
                         )
-                        res.status(400).json({message: 'P2002'});
+                        res.status(400).json({error: 'P2002'});
                       }
                     }
                     //throw e
@@ -78,40 +83,6 @@ export default async function handler(req, res){
             }
             
         }    
-    }
-
-    //actualizar tarea (chequear que dato me llego)
-    
-    else if (req.method === "PUT") {
-        
-        try {
-            const cambiarTarea = await client.tareasPomodoro.update ({
-                where: {
-                    userId: usuario.id,
-                    tarea: req.body.data,
-                },
-                data: {
-                    tarea: req.body.data,
-                }
-            })    
-
-            console.log("Tarea actualizada: \n", cambiarTarea);
-            res.status(200).json(cambiarTarea.tarea);
-        } 
-        //Tirar error si tarea ya existe
-        catch (e) {
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-              // The .code property can be accessed in a type-safe manner
-              if (e.code === 'P2002') {
-                console.log(
-                  'Unique constraint violation, Hay otra tarea con ese nombre'
-                )
-                res.status(400).json({message: 'P2002'});
-              }
-            }
-            //throw e
-        }
-
     }
 
     //borrar tarea
@@ -125,6 +96,6 @@ export default async function handler(req, res){
         })
 
         console.log("Tarea borrada: \n", borrarTarea);
-        res.status(200).json(borrarTarea.tarea);
+        res.status(200).json({tarea: borrarTarea.tarea});
     }
 }
