@@ -55,10 +55,7 @@ export default function Timer({
             RESET
           </button>
         )}
-
-
       </div>
-
     </div>
   )
 }

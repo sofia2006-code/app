@@ -92,14 +92,25 @@ export default function Tasks() {
     setSelectedClass(e.target.value);
   };
 
-  return (
-    <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
       <Navigations openConf={false}/>
       <h1 className="grid justify-items-center text-xl"> Mis tareas  </h1>
+      <h1 className="grid justify-items-center text-xl mt-3"> Mis tareas  </h1>
       <form onSubmit={inputSubmit}>
         <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" className="text-black"/>
+      <div className="grid align-items-center gap-3 mr-8 ml-8 my-10 shadow-inner appearance-none border-none rounded py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline ">
+        <p>Tarea:</p>
+        <input className="text-black rounded-sm text-lg bg-transparent border-2 border-blue-500" type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" />
+        <p>Prioridad:</p>
+        <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className=" bg-white opacity-60 text-black rounded-sm pt-1 pb-1">
+          <option class="text-sm" value="Seleccionar Clase">Seleccionar Clase</option>
+          <option class="text-sm"value="A">Clase A</option>
+          <option class="text-sm"value="B">Clase B</option>
+          <option class="text-sm"value="C">Clase C</option>
+        </select>
+      </div>
         <button onClick={submitTask} type="submit">Add task</button>
       </form>
+<<<<<<< Updated upstream
       <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className="text-black">
         <option value="Seleccionar Clase">Seleccionar Clase</option>
         <option value="A">Clase A</option>
@@ -110,11 +121,15 @@ export default function Tasks() {
       <input className="text-black" onChange={dateChange} type="date"/>
 
 
+=======
+      
+>>>>>>> Stashed changes
 
       {/* Render tasks and delete button here */}
       <div>
         <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
         <p id="ClaseA">
+
           {tasksArray.map((taskObj, index) => (
             taskObj.class === 'A' && (
               <span key={index}>
@@ -142,6 +157,7 @@ export default function Tasks() {
       </div>
       <div>
         <p>Clase C</p>
+        <p class="text-2xl text-blue-500">C</p>
         <p id="ClaseC">
           {tasksArray.map((taskObj, index) => (
             taskObj.class === 'C' && (
