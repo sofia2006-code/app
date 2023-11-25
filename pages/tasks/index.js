@@ -29,20 +29,23 @@ export default function Tasks() {
   }, []);
   */
 
-  
-  fetch('../api/toDoList', {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  /*
+  useEffect(() => {
+    fetch('../api/toDoList', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.log("error");
+    })
+    .then((tareas) => {
+      console.log(tareas);
+    })
   })
-  .then((response) => response.json())
-  .catch((error) => {
-    console.log("error");
-  })
-  .then((tareas) => {
-    console.log(tareas);
-  })
+  */
   
 
 
@@ -160,7 +163,8 @@ export default function Tasks() {
         </p>
       </div>
       <div>
-      <p id="ClaseC">
+      <p>Clase C</p>
+      <p id="Clase C">
               {tasksArray.map((taskObj, index) => (
               taskObj.class === 'C' && (
               <span key={index}>
