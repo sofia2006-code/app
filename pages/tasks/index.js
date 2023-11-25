@@ -138,17 +138,18 @@ export default function Tasks() {
 
 
 
-      {/* Render tasks and delete button here */}
       <div>
         <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
             <p id="ClaseA">
               {tasksArray.map((taskObj, index) => (
               taskObj.class === 'A' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
-                <br />
-              </span>
+              <div> {/* En este div va el diseño */}
+                <span key={index}>
+                  {taskObj.task}
+                  <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
+                  <br />
+                </span>
+              </div>
             )
           ))}
         </p>
@@ -158,11 +159,13 @@ export default function Tasks() {
         <p id="ClaseB">
               {tasksArray.map((taskObj, index) => (
               taskObj.class === 'B' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete('B', taskObj.task)}>Delete</button>
-                <br />
-              </span>
+              <div> {/*En este div tenes que diseñar*/}
+                <span key={index}>
+                  {taskObj.task}
+                  <button onClick={() => handleDelete('B', taskObj.task)}>Delete</button>
+                  <br />
+                </span>
+              </div>
             )
           ))}
         </p>
@@ -172,11 +175,13 @@ export default function Tasks() {
       <p id="Clase C">
               {tasksArray.map((taskObj, index) => (
               taskObj.class === 'C' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
-                <br />
-              </span>
+              <div> {/*En este div tenes que diseñar*/}
+                <span key={index}>
+                  {taskObj.task} 
+                  <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
+                  <br />
+                </span>
+              </div>
             )
           ))}
         </p>
