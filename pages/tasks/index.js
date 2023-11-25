@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Navigations from '../../components/navigations';
 
 export default function Tasks() {
-  
   const [date, setDate] = useState('')
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
@@ -13,7 +12,7 @@ export default function Tasks() {
     B: '',
     C: ''
   });
-  
+
   /*
   useEffect(() => {
     const getTasks = async () => {
@@ -29,9 +28,9 @@ export default function Tasks() {
   }, []);
   */
 
-  /*
+  
   useEffect(() => {
-    fetch('../api/toDoList', {
+    fetch('http://localhost:3000/api/toDoList', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,27 +40,34 @@ export default function Tasks() {
     .catch((error) => {
       console.log("error");
     })
-    .then((tareas) => {
-      console.log(tareas);
+    .then((crearTarea) => {
+      console.log(crearTarea);
     })
   })
-  */
   
-
-
+  
   const submitTask = async () => {
-    const response = await fetch('../api/toDoList', {
-      method: 'POST',
-      body: JSON.stringify({ dato:task, tipo: "tarea", clase:selectedClass, date:date }), //en dato poner classText[selectedClass]
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    
-    /*
-    const data = await response.json();
-    console.log(data);
+    if(date){
+      const response = await fetch('../api/toDoList', {
+        method: 'POST',
+        body: JSON.stringify({ dato:task, tipo: "tarea", clase:selectedClass, date:date }), //en dato poner classText[selectedClass]
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
+      const dato = await response.json();
+      console.log(dato);
+    }
+    else {
+      alert('Porfavor complete el campo de fecha');
+      return;
+    }
+    
+    
+    
+
+    /*
     const respone = await fetch(endpoint, options)
 
     if(!response.ok){
@@ -69,12 +75,11 @@ export default function Tasks() {
       const result =await response.json()
       alert()
     }
-
-*/
+    */
   };
   const inputChange = (e) => {
     setTask(e.target.value);
-    
+
   };
 
   const dateChange = (e) => {
