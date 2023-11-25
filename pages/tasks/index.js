@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navigations from '../../components/navigations';
 
 export default function Tasks() {
+  
   const [date, setDate] = useState('')
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
@@ -12,8 +13,8 @@ export default function Tasks() {
     B: '',
     C: ''
   });
-
   
+  /*
   useEffect(() => {
     const getTasks = async () => {
       const response = await fetch('../api/toDoList', {
@@ -26,6 +27,24 @@ export default function Tasks() {
 
     getTasks();
   }, []);
+  */
+
+  
+  fetch('../api/toDoList', {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => response.json())
+  .catch((error) => {
+    console.log("error");
+  })
+  .then((tareas) => {
+    console.log(tareas);
+  })
+  
+
 
   const submitTask = async () => {
     const response = await fetch('../api/toDoList', {
@@ -35,7 +54,6 @@ export default function Tasks() {
         'Content-Type': 'application/json'
       }
     });
-
     
     /*
     const data = await response.json();
@@ -51,9 +69,9 @@ export default function Tasks() {
 
 */
   };
-
   const inputChange = (e) => {
     setTask(e.target.value);
+    
   };
 
   const dateChange = (e) => {
@@ -70,20 +88,21 @@ export default function Tasks() {
     }
   };
 
-  const handleDelete = async (index) => {
-    const updatedTasks = [...tasksArray];
-    updatedTasks.splice(index, 1);
+  const handleDelete = async (classType, taskText) => {
+    const updatedTasks = tasksArray.filter(
+      (taskObj) => !(taskObj.class === classType && taskObj.task === taskText)
+    );
     setTasksArray(updatedTasks);
-
+  
     // Perform the delete action here
     const response = await fetch('../api/toDoList', {
       method: 'DELETE',
-      body: JSON.stringify({ dato:task, clase:selectedClass }),
+      body: JSON.stringify({ tarea: taskText }),
       headers: {
         'Content-Type': 'application/json'
       }
     });
-
+  
     const result = await response.json();
     console.log(result); // Handle the result as needed
   };
@@ -114,12 +133,12 @@ export default function Tasks() {
       {/* Render tasks and delete button here */}
       <div>
         <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
-        <p id="ClaseA">
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'A' && (
+            <p id="ClaseA">
+              {tasksArray.map((taskObj, index) => (
+              taskObj.class === 'A' && (
               <span key={index}>
                 {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
                 <br />
               </span>
             )
@@ -129,11 +148,11 @@ export default function Tasks() {
       <div>
         <p>Clase B</p>
         <p id="ClaseB">
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'B' && (
+              {tasksArray.map((taskObj, index) => (
+              taskObj.class === 'B' && (
               <span key={index}>
                 {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={() => handleDelete('B', taskObj.task)}>Delete</button>
                 <br />
               </span>
             )
@@ -141,13 +160,12 @@ export default function Tasks() {
         </p>
       </div>
       <div>
-        <p>Clase C</p>
-        <p id="ClaseC">
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'C' && (
+      <p id="ClaseC">
+              {tasksArray.map((taskObj, index) => (
+              taskObj.class === 'C' && (
               <span key={index}>
                 {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
                 <br />
               </span>
             )
