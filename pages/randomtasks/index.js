@@ -3,16 +3,16 @@ import Navigations from "../../components/navigations";
 import Footer from "../../components/footer";
 
 const defaultTasks = [
-  { name: 'Hacer la compra', displayTime: 3000 },
-  { name: 'Estudiar para el examen', displayTime: 5000 },
-  { name: 'Terminar el informe', displayTime: 7000 },
-  { name: 'Hacer ejercicio', displayTime: 4000 }
+  { name: 'Toma nota de las palabras clave', displayTime: 3000 },
+  { name: 'Hace un cuadro Conceptual con palabras clave', displayTime: 5000 },
+  { name: 'Mira al profe como habla', displayTime: 7000 },
+  { name: 'Hacer preguntas! no tengas verguenza!!!', displayTime: 4000 }
 ];
 
 const defaultBreaks = [
   { name: '¡Muy Bien! descansa 5 minutos', displayTime: 5000 },
   { name: 'Anda a dar una vuelta', displayTime: 400 },
-  { name: 'Sé libre deja el colegio', displayTime: 400 },
+  { name: 'Muy bien hecho! tomate un', displayTime: 400 },
 ];
 
 export default function RandomTasks() {
@@ -89,33 +89,34 @@ export default function RandomTasks() {
 
   return (
     <>
-   
-   <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] font-Quattrocento h-screen w-screen text-white flex flex-col items-center ">
+      <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] font-Quattrocento h-screen w-screen text-white flex flex-col ">
         <Navigations />
         <h1 className="text-2xl text-center pt-14 mt-5 font-bold ">Tareas Espontaneas</h1>
         <p className="text-lg text-center mx-8 px-3 my-4 font-semibold">Cumpli con los descansos para mantener la concentracion</p>
-        {!isRunning && (
-          <button
-            className="bg-white text-2xl text-blue-600 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
-            onClick={handleStart}
-          >
-            Empezar
-          </button>
-        )}
-
-        {isRunning && (
-          <div>
+        <div className="flex flex-col items-center">
+          {!isRunning && (
             <button
-              className="bg-white text-2xl text-red-500 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
-              onClick={handleStop}
+              className="bg-white text-2xl text-blue-600 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
+              onClick={handleStart}
             >
-              Pausa
+              Empezar
             </button>
-            {displayItems()}
-          </div>
-        )}
+          )}
+
+          {isRunning && (
+            <div className="flex flex-col items-center">
+              <button
+                className="bg-white text-2xl text-red-500 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
+                onClick={handleStop}
+              >
+                Pausa
+              </button>
+              {displayItems()}
+            </div>
+          )}
         </div>
-      <Footer/>
+      </div>
+      <Footer />
     </>
   );
 }
