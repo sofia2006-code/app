@@ -3,9 +3,7 @@ import React, { forwardRef } from 'react'
 import { FiX } from "react-icons/fi";
 
 function PomoSettings({
-  setPomodoro,
-  setShortBreak,
-  setLongBreak,
+  options,
   openSettings,
   setOpenSettings,
   updateTimeDefaultValue
@@ -14,26 +12,6 @@ function PomoSettings({
   // const pomodoroRef = useRef(null);
   // const shortBreakRef = useRef(null);
   // const longBreakRef = useRef(null);
-
-  const options = [
-    {
-      value: "Pomodoro",
-      setter: setPomodoro,
-      defaultValue: 25,
-    },
-
-    {
-      value: "Short Break",
-      setter: setShortBreak,
-      defaultValue: 5,
-    },
-
-    {
-      value: "Long Break",
-      setter: setLongBreak,
-      defaultValue: 10,
-    }
-  ];
 
 
   return (

@@ -6,12 +6,13 @@ import Timer from '../components/timer'
 import styles from '../styles/Home.module.css'
 import Alarm from '../components/alarm'
 import PomoSettings from '../components/pomosettings'
+import Footer from '../components/footer'
 //import styles from '../styles/globals.css'
 
 export default function Home() {
   const [pomodoro, setPomodoro] = useState(25);
   const [shortBreak, setShortBreak] = useState(1);
-  const [longBreak, setLongBreak] = useState(40);
+  const [longBreak, setLongBreak] = useState(10);
   const [seconds, setSeconds] = useState(0);
   const [stage, setStage] = useState(0);
   const [consumedSecond, setConsumeSec] = useState(0)
@@ -22,11 +23,31 @@ export default function Home() {
   const alarmRef = useRef(null);
   // lo decia el tutorial pero no funco xq habia problemas con ref en timer
 
+  const options = [
+    {
+      value: "Pomodoro",
+      setter: setPomodoro,
+      defaultValue: 25,
+    },
+
+    {
+      value: "Short Break",
+      setter: setShortBreak,
+      defaultValue: 1,
+    },
+
+    {
+      value: "Long Break",
+      setter: setLongBreak,
+      defaultValue: 10,
+    }
+  ];
+
   //en onSave updatea el tiempo default
   const updateTimeDefaultValue = () => {
     setOpenSettings(false);
-    setSeconds(0);
-    setConsumeSec(0);
+    // setSeconds(0);
+    // setConsumeSec(0);
   }
 
   //cambia de estado cuando se consumen los segundos 
@@ -67,8 +88,10 @@ export default function Home() {
 
   // setea todos los valores a su valor original
   const reset = () => {
+    const setMinutes = updateminute();
+    setMinutes(options[stage].defaultValue)
     setTicking(false);
-    setSeconds(0);
+    // setSeconds(0);
     updateTimeDefaultValue();
   }
 
@@ -142,10 +165,9 @@ export default function Home() {
         <PomoSettings openSettings={openSettings}
           setOpenSettings={setOpenSettings}
           updateTimeDefaultValue={updateTimeDefaultValue}
-          setPomodoro={setPomodoro}
-          setShortBreak={setShortBreak}
-          setLongBreak={setLongBreak}
+          options={options}
         />
+        <Footer/>
       </div>
     </div>
   )
