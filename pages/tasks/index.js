@@ -2,6 +2,8 @@ import { data } from "autoprefixer";
 import React, { useState, useEffect } from "react";
 import Navigations from '../../components/navigations';
 import Footer from "../../components/footer";
+import { RxCrossCircled } from "react-icons/rx";
+
 
 export default function Tasks() {
   
@@ -144,10 +146,13 @@ export default function Tasks() {
           <div id="ClaseA">
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'A' && (
-                <div key={index}>
-                  {taskObj.task} - {taskObj.date}
-                  <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
+                <div className="bg-white rounded-xl pt-2 pb-0 mt-2 " id="ClaseB">
+                <div className="ml-5 mb-0 " key={index}> {/* Added margin left and bottom */}
+                  <div className="text-slate-600" >{taskObj.date}</div>
+                  <div className="text-slate-800 font-bold font-Quattrocento text-2xl">{taskObj.task}</div>
+                  <div ><button onClick={() => handleDelete('A', taskObj.task)}><RxCrossCircled  color='black' size='35' /></button> </div>
                   <br />
+                </div>
                 </div>
               )
             ))}
@@ -155,28 +160,33 @@ export default function Tasks() {
         </div>
         <div className="flex-1 border-r border-dashed border-gray-300 p-4">
           <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">B</p>
-          <div className="bg-sky-900 rounded-xl pt-4 pb-4 mt-2" id="ClaseB">
+          
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'B' && (
-                <div className="ml-5 mb-3" key={index}> {/* Added margin left and bottom */}
-                  <div>{taskObj.task} -{taskObj.date}</div>
-                  <div><button onClick={() => handleDelete('B', taskObj.task)}>Delete</button> </div>
+                <div className="bg-white rounded-xl pt-2 pb-0 mt-2 " id="ClaseB">
+                <div className="ml-5 mb-0 " key={index}> {/* Added margin left and bottom */}
+                  <div className="text-slate-600" >{taskObj.date}</div>
+                  <div className="text-slate-800 font-bold font-Quattrocento text-2xl">{taskObj.task}</div>
+                  <div ><button onClick={() => handleDelete('B', taskObj.task)}><RxCrossCircled  color='black' size='35' /></button> </div>
                   <br />
+                </div>
                 </div>
               )
             ))}
-          </div>
+          
         </div>
         <div className="flex-1 p-4">
           <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">C</p>
           <div id="ClaseC">
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'C' && (
-                <div key={index}>
-                  {taskObj.task} - {taskObj.date}
-                  <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
-                  {date}
+                <div className="bg-white rounded-xl pt-2 pb-0 mt-2 " id="ClaseB">
+                <div className="ml-5 mb-0 " key={index}> {/* Added margin left and bottom */}
+                  <div className="text-slate-600" >{taskObj.date}</div>
+                  <div className="text-slate-800 font-bold font-Quattrocento text-2xl">{taskObj.task}</div>
+                  <div ><button onClick={() => handleDelete('C', taskObj.task)}><RxCrossCircled  color='black' size='35' /></button> </div>
                   <br />
+                </div>
                 </div>
               )
             ))}
