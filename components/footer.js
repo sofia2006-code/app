@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 
 
-const Footer = () => {
+const Footer = ({buttonAppear=false, setFormVisible}) => {
 
   const { data: session } = useSession()
 
@@ -26,9 +26,10 @@ const Footer = () => {
       window.location.href="http://localhost:3000/home"
     }
 
+    
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-transparent p-4 flex justify-around items-center text-[#B9B5B5]">
+    <div className="position-fixed bottom-0 left-0 w-full  p-4 flex justify-around items-center text-[#B9B5B5] bg-blue-950">
       <div className="footer-item flex flex-col items-center">
         <button onClick={handlerredirectcalendar}>
           <LuCalendarRange size={24} />
@@ -41,9 +42,13 @@ const Footer = () => {
         </button>
         <p className="text-sm">Timer</p>
       </div>
-      <button className="bg-[#2200FF] text-white rounded-full pb-2.5 px-3 pt-1">
+      {buttonAppear && (
+        <button className="bg-[#2200FF] text-white rounded-full pb-2.5 px-3 pt-1"  onClick={() => setFormVisible(true)}>
         <span className="text-4xl">+</span>
-      </button>
+        </button>
+        )}    
+    
+      
       <div className="footer-item flex flex-col items-center">
         <button onClick={handlerRedirecttasks}>
           <FaTasks size={24} />
