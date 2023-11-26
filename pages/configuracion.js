@@ -50,8 +50,8 @@ export default function configuracion() {
             </button>
 
             <div className="relative h-20 text-white">
-                <h2 className="absolute top-3 left-20 h-22 w-120 text-2xl font-semibold" >Meotodos de Estudio</h2>
-                <h6 className="absolute top-11 left-20 h-22 w-120">Encuentra el mas optimo</h6>
+                <h2 className="absolute top-3 left-20 h-22 w-120 text-2xl font-semibold" >Tareas Espontaneas</h2>
+                <h6 className="absolute top-11 left-20 h-22 w-120">Sigue el hilo al profesor</h6>
                 <img class="absolute top-5 left-4 h-10 w-10" src="Images/lock-closed.png"></img>
             </div>
 
