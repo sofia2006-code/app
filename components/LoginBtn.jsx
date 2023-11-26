@@ -27,8 +27,14 @@ export default SignInbutton;*/
 
 export default function LoginBtn() {
     const { data: session } = useSession()
+
+    const handlerRedirectLogin = async () => {
+      window.location.href = 'http://localhost:3000/home';
+    };
+
     if (session) {
-      return (
+      window.location.href = 'http://localhost:3000/home';
+      /*return (
         <>
           <img
           src={session.user.image}
@@ -42,7 +48,7 @@ export default function LoginBtn() {
           <button onClick={() => signOut()}>Sign out</button>
           
         </>
-      )
+      )*/
     }
     return (
       <>
