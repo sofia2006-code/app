@@ -136,7 +136,7 @@ export default function Tasks() {
   };
 
   return (
-    <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
+    <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen relative z-0 flex-shrink-0">
       <Navigations openConf={false}/>
       <h1 className="grid justify-items-center text-xl mt-3"> Mis tareas  </h1>
       <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
@@ -175,7 +175,7 @@ export default function Tasks() {
             ))}
           
         </div>
-        <div className="flex-1 p-4">
+        <div className="flex-1 justify-center items-center  p-4">
           <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">C</p>
           <div id="ClaseC">
             {tasksArray.map((taskObj, index) => (
@@ -201,15 +201,15 @@ export default function Tasks() {
 
       <form onSubmit={inputSubmit}>
         
-         {formVisible &&(<div className="justify-start bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center gap-3 mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline">
+         {formVisible &&(<div className="justify-start bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline absolute min-h-screen inset-0 z-10 left-0">
           <p className="text-xl"> Nombre</p>
                 <div className="text-right">
-          <button className="text-white" onClick={() => setFormVisible(true)}>
+          <button className="text-white" onClick={() => setFormVisible(false)}>
             ✕
           </button>
         </div>
           <input
-            className="text-white rounded-sm text-lg bg-[#3B355A] shadow-inner py-1 mx-full mt-3"
+            className="text-white rounded-sm text-lg bg-[#3B355A] shadow-inner py-1 mx-auto my-min mt-3"
             type="text"
             value={task}
             onChange={inputChange}
@@ -246,7 +246,8 @@ export default function Tasks() {
         
       </form>
     </div>
-      <Footer/>
+      <Footer buttonAppear={true}
+      setFormVisible={setFormVisible}/>
     </div>
     
   );
