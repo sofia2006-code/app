@@ -40,14 +40,25 @@ export default function Tasks() {
       },
     })
     .then((response) => response.json())
-    .catch((error) => {
-      console.log("error");
-    })
-    .then((crearTarea) => {
-      console.log(crearTarea);
-    })
-  })
+    .then((task) => {
+      if (task && task.tareas && Array.isArray(task.tareas)) {
+        const updatedTasksArray = task.tareas.map((taskObj) => ({
+          class: taskObj.clase,
+          task: taskObj.tarea,
+          date: taskObj.fecha,
+        }));
   
+        setTasksArray(updatedTasksArray);
+      } else {
+        console.log("The 'tareas' property is not in the expected format.");
+      }
+    })
+    .catch((error) => {
+      console.log("Error fetching tasks:", error);
+    });
+  }, []);
+  
+
   
   const submitTask = async () => {
     if(date){
@@ -91,10 +102,10 @@ export default function Tasks() {
 
   const inputSubmit = (e) => {
     e.preventDefault();
-    if (task.trim() && selectedClass !== 'Seleccionar Clase') {
+    if (task.trim() && selectedClass !== 'Seleccionar Clase' && date) {
       const updatedClassText = { ...classText, [selectedClass]: task };
       setClassText(updatedClassText);
-      setTasksArray([...tasksArray, { class: selectedClass, task }]);
+      setTasksArray([...tasksArray, { class: selectedClass, task, date }]);
       setTask('');
     }
   };
@@ -134,7 +145,7 @@ export default function Tasks() {
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'A' && (
                 <div key={index}>
-                  {taskObj.task}
+                  {taskObj.task} - {taskObj.date}
                   <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
                   <br />
                 </div>
@@ -144,12 +155,12 @@ export default function Tasks() {
         </div>
         <div className="flex-1 border-r border-dashed border-gray-300 p-4">
           <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">B</p>
-          <div id="ClaseB">
+          <div className="bg-sky-900 rounded-xl pt-4 pb-4 mt-2" id="ClaseB">
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'B' && (
-                <div key={index}>
-                  {taskObj.task}
-                  <button onClick={() => handleDelete('B', taskObj.task)}>Delete</button>
+                <div className="ml-5 mb-3" key={index}> {/* Added margin left and bottom */}
+                  <div>{taskObj.task} -{taskObj.date}</div>
+                  <div><button onClick={() => handleDelete('B', taskObj.task)}>Delete</button> </div>
                   <br />
                 </div>
               )
@@ -162,8 +173,9 @@ export default function Tasks() {
             {tasksArray.map((taskObj, index) => (
               taskObj.class === 'C' && (
                 <div key={index}>
-                  {taskObj.task}
+                  {taskObj.task} - {taskObj.date}
                   <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
+                  {date}
                   <br />
                 </div>
               )
