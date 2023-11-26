@@ -1,6 +1,8 @@
 import Navigations from '../components/navigations'
 import { FiClock } from "react-icons/fi";
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { IoTimerOutline } from "react-icons/io5";
+import { CgSandClock } from "react-icons/cg";
 
 
 export default function configuracion() {
@@ -46,13 +48,13 @@ export default function configuracion() {
             <button onClick={() => handlerredirectTimer()} className="relative h-20 text-white">
                 <h2 className="absolute top-3 left-20 h-22 w-120 text-2xl font-semibold">Timer Pomodoro</h2>
                 <h6 className="absolute top-11 left-20 h-22 w-120">Personaliza tus tiempos</h6>
-                <img class="absolute top-5 left-4 h-10 w-10 " src="Images/timer.svg"></img>
+                <IoTimerOutline class="absolute top-5 left-4 h-10 w-10 "></IoTimerOutline>
             </button>
 
             <div className="relative h-20 text-white">
                 <h2 className="absolute top-3 left-20 h-22 w-120 text-2xl font-semibold" >Tareas Espontaneas</h2>
                 <h6 className="absolute top-11 left-20 h-22 w-120">Sigue el hilo al profesor</h6>
-                <img class="absolute top-5 left-4 h-10 w-10" src="Images/lock-closed.png"></img>
+                <CgSandClock class="absolute top-5 left-4 h-10 w-10" src="Images/lock-closed.png"></CgSandClock>
             </div>
 
             <div className="relative h-20 text-white">
