@@ -93,7 +93,7 @@ export default function RandomTasks() {
    <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] font-Quattrocento h-screen w-screen text-white flex flex-col items-center ">
         <Navigations />
         <h1 className="text-2xl text-center pt-14 mt-5 font-bold ">Tareas Espontaneas</h1>
-        <p className="text-lg text-center mx-8 px-3 my-4 font-semibold">Hace las tareas espontaneas y segui con los descansos para mantener la concentracion</p>
+        <p className="text-lg text-center mx-8 px-3 my-4 font-semibold">Cumpli con los descansos para mantener la concentracion</p>
         {!isRunning && (
           <button
             className="bg-white text-2xl text-blue-600 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"

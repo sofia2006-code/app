@@ -13,7 +13,9 @@ export default function Tasks() {
     A: '',
     B: '',
     C: ''
+  
   });
+  const [formVisible, setFormVisible] = useState(true);
   /*
   useEffect(() => {
     const getTasks = async () => {
@@ -64,7 +66,8 @@ export default function Tasks() {
       alert('Porfavor complete el campo de fecha');
       return;
     }
-    
+    setFormVisible(true);
+
     
     
 
@@ -122,70 +125,106 @@ export default function Tasks() {
   return (
     <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
       <Navigations openConf={false}/>
-      <h1 className="grid justify-items-center text-xl"> Mis tareas  </h1>
-      <form onSubmit={inputSubmit}>
-        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" className="text-black"/>
-        <button onClick={submitTask} type="submit">Add task</button>
-      </form>
-      <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className="text-black">
-        <option value="Seleccionar Clase">Seleccionar Clase</option>
-        <option value="A">Clase A</option>
-        <option value="B">Clase B</option>
-        <option value="C">Clase C</option>
-      </select>
-      <br/>
-      <input className="text-black" onChange={dateChange} type="date"/>
-
-
-
-      <div>
-        <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
-            <p id="ClaseA">
-              {tasksArray.map((taskObj, index) => (
+      <h1 className="grid justify-items-center text-xl mt-3"> Mis tareas  </h1>
+      <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
+      <div className="flex flex-col h-3/4">
+        <div className="flex-1 border-r border-dashed border-gray-300 p-4">
+          <p className="text-3xl font-bold text-[#DF6B00] font-Quattrocento-bold">A</p>
+          <div id="ClaseA">
+            {tasksArray.map((taskObj, index) => (
               taskObj.class === 'A' && (
-              <div> {/* En este div va el diseño */}
-                <span key={index}>
+                <div key={index}>
                   {taskObj.task}
                   <button onClick={() => handleDelete('A', taskObj.task)}>Delete</button>
                   <br />
-                </span>
-              </div>
-            )
-          ))}
-        </p>
-      </div>
-      <div>
-        <p>Clase B</p>
-        <p id="ClaseB">
-              {tasksArray.map((taskObj, index) => (
+                </div>
+              )
+            ))}
+          </div>
+        </div>
+        <div className="flex-1 border-r border-dashed border-gray-300 p-4">
+          <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">B</p>
+          <div id="ClaseB">
+            {tasksArray.map((taskObj, index) => (
               taskObj.class === 'B' && (
-              <div> {/*En este div tenes que diseñar*/}
-                <span key={index}>
+                <div key={index}>
                   {taskObj.task}
                   <button onClick={() => handleDelete('B', taskObj.task)}>Delete</button>
                   <br />
-                </span>
-              </div>
-            )
-          ))}
-        </p>
-      </div>
-      <div>
-      <p>Clase C</p>
-      <p id="Clase C">
-              {tasksArray.map((taskObj, index) => (
+                </div>
+              )
+            ))}
+          </div>
+        </div>
+        <div className="flex-1 p-4">
+          <p className="text-3xl font-bold text-[#00A3FF] font-Quattrocento-bold">C</p>
+          <div id="ClaseC">
+            {tasksArray.map((taskObj, index) => (
               taskObj.class === 'C' && (
-              <div> {/*En este div tenes que diseñar*/}
-                <span key={index}>
-                  {taskObj.task} 
+                <div key={index}>
+                  {taskObj.task}
                   <button onClick={() => handleDelete('C', taskObj.task)}>Delete</button>
                   <br />
-                </span>
-              </div>
-            )
-          ))}
-        </p>
+                </div>
+              )
+            ))}
+          </div>
+        </div>
       </div>
+      </div>
+
+      
+      <div className=" ">
+      
+
+      <form onSubmit={inputSubmit}>
+        
+         {formVisible &&(<div className="justify-start bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center gap-3 mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline">
+          <p className="text-xl"> Nombre</p>
+                <div className="text-right">
+          <button className="text-white" onClick={() => setFormVisible(true)}>
+            ✕
+          </button>
+        </div>
+          <input
+            className="text-white rounded-sm text-lg bg-[#3B355A] shadow-inner py-1 mx-full mt-3"
+            type="text"
+            value={task}
+            onChange={inputChange}
+            placeholder="Agregar Tarea"
+            id="NombreTarea"
+          />
+          <p className=" mt-3 text-xl"> Prioridad</p>
+          <select
+            id="SelectClases"
+            onChange={handleClassChange}
+            value={selectedClass}
+            className="justify-start text-gray-400 mt-3 rounded-sm text-lg bg-[#3B355A] shadow-inner py-2 mx-auto pr-6"
+          >
+            <option value="Seleccionar Clase">Seleccionar Clase</option>
+            <option value="A">Clase A</option>
+            <option value="B">Clase B</option>
+            <option value="C">Clase C</option>
+          </select>
+          <br />
+          <p className=" mt-3 text-xl"> Fecha</p>
+          <input
+            className="justify-start text-gray-400 mt-3 rounded-sm text-lg bg-[#3B355A] shadow-inner py-2 mx-auto pr-6"
+            onChange={dateChange}
+            type="date"
+          />
+          <button
+          onClick={submitTask}
+          type="submit"
+          className="bg-white text-blue-700 text-center align-items-center rounded-md py-2 mt-3 mx-auto px-4"
+        >Agregar Tarea
+        </button>
+        </div>)}
+        
+        
+      </form>
+    </div>
+      <Footer/>
     </div>
     
   );
