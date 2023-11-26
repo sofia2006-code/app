@@ -6,7 +6,7 @@ import { RxCrossCircled } from "react-icons/rx";
 
 
 export default function Tasks() {
-  
+    
   const [date, setDate] = useState('')
   const [task, setTask] = useState('');
   const [tasksArray, setTasksArray] = useState([]);

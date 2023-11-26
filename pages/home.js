@@ -1,0 +1,54 @@
+import React, { useState, useEffect } from "react";
+import Footer from "../components/footer";
+import { RxCrossCircled } from "react-icons/rx";
+
+
+export default function Home() {
+  const [tasksArray, setTasksArray] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/toDoList', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => response.json())
+    .then((task) => {
+      if (task && task.tareas && Array.isArray(task.tareas)) {
+        const updatedTasksArray = task.tareas.map((taskObj) => ({
+          class: taskObj.clase,
+          task: taskObj.tarea,
+          date: taskObj.fecha,
+        }));
+
+        setTasksArray(updatedTasksArray);
+      } else {
+        console.log("The 'tareas' property is not in the expected format.");
+      }
+    })
+    .catch((error) => {
+      console.log("Error fetching tasks:", error);
+    });
+  }, []);
+
+  const handleDelete = async (classType, taskText) => {
+    // Add your delete logic here
+  };
+
+  return (
+    <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col justify-center items-center">
+      {tasksArray.map((taskObj, index) => (
+        <div className="bg-white rounded-xl p-4 my-2 flex items-center" key={index}>
+          <div className="text-orange-700 font-bold">{taskObj.class}</div>
+          <div className="text-slate-600">{taskObj.date}</div>
+          <div className="text-slate-800 font-bold font-Quattrocento text-2xl ml-4">{taskObj.task}</div>
+          <button onClick={() => handleDelete(taskObj.class, taskObj.task)} className="ml-auto">
+            <RxCrossCircled color='black' size='35' />
+          </button>
+        </div>
+      ))}
+      <Footer />
+    </div>
+  );
+}
