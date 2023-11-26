@@ -33,6 +33,11 @@ export default async function handler(req, res){
             where: {
                 userId: usuario.id,
             },
+            select: {
+                tarea: true,
+                clase: true,
+                fecha: true,
+            },
         })
     
         console.log("Tareas: \n", tareas);
