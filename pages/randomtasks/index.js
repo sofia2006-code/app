@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Navigations from "../../components/navigations";
+import Footer from "../../components/footer";
 
 const defaultTasks = [
   { name: 'Hacer la compra', displayTime: 3000 },
@@ -69,8 +71,8 @@ export default function RandomTasks() {
       <div>
         {itemsToShow.map((item, index) => (
           <div key={index} style={{ display: index === visibleItemIndex ? 'block' : 'none' }}>
-            <p>{item.name}</p>
-            <p>Remaining Time: {minutes.toString().padStart(2, '0')} : {seconds}</p>
+            <p className="text-blue-200 text-3xl text-center font-bold mx-4 my-3">{item.name}</p>
+            <p class="justify-center text-xl font-semibold text-center pt-2">Tiempo Restante : {minutes.toString().padStart(2, '0')} : {seconds}</p>
           </div>
         ))}
       </div>
@@ -87,16 +89,33 @@ export default function RandomTasks() {
 
   return (
     <>
-      <h1>Lista de Tareas</h1>
-      {!isRunning && (
-        <button onClick={handleStart}>Start</button>
-      )}
-      {isRunning && (
-        <div>
-          <button onClick={handleStop}>Stop</button>
-          {displayItems()}
+   
+   <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] font-Quattrocento h-screen w-screen text-white flex flex-col items-center ">
+        <Navigations />
+        <h1 className="text-2xl text-center pt-14 mt-5 font-bold ">Tareas Espontaneas</h1>
+        <p className="text-lg text-center mx-8 px-3 my-4 font-semibold">Hace las tareas espontaneas y segui con los descansos para mantener la concentracion</p>
+        {!isRunning && (
+          <button
+            className="bg-white text-2xl text-blue-600 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
+            onClick={handleStart}
+          >
+            Empezar
+          </button>
+        )}
+
+        {isRunning && (
+          <div>
+            <button
+              className="bg-white text-2xl text-red-500 text-center rounded-md py-4 mt-6 px-8 font-bold justify-center"
+              onClick={handleStop}
+            >
+              Pausa
+            </button>
+            {displayItems()}
+          </div>
+        )}
         </div>
-      )}
+      <Footer/>
     </>
   );
 }
