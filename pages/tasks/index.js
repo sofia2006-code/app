@@ -201,7 +201,8 @@ export default function Tasks() {
 
       <form onSubmit={inputSubmit}>
         
-         {formVisible &&(<div className="justify-start bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline absolute min-h-screen inset-0 z-10 left-0">
+         {formVisible &&(
+         <div className="justify-start bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline absolute min-h-screen inset-0 z-10 left-0">
           <p className="text-xl"> Nombre</p>
                 <div className="text-right">
           <button className="text-white" onClick={() => setFormVisible(false)}>

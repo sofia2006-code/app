@@ -5,6 +5,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { signIn, signOut, useSession } from 'next-auth/react';
 import {Image} from 'next/image';
 import NavBar from "../components/NavBar";
+import Navigations from "../components/navigations";
 
 export default function Home() {
   const [tasksArray, setTasksArray] = useState([]);
@@ -43,11 +44,13 @@ export default function Home() {
 
   return (
     <>
-    <div>
-        <NavBar></NavBar>
-    </div>
+    
 
-    <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col justify-center items-center">
+    <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col items-center">
+    <Navigations openConf={true}/>
+    <div>
+      <NavBar className="mt-5"></NavBar>
+    </div>
       {tasksArray.map((taskObj, index) => (
         <div className="bg-white rounded-xl p-4 my-2 flex items-center" key={index}>
           <div className="text-orange-700 font-bold">{taskObj.class}</div>
