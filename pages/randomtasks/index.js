@@ -71,8 +71,8 @@ export default function RandomTasks() {
       <div>
         {itemsToShow.map((item, index) => (
           <div key={index} style={{ display: index === visibleItemIndex ? 'block' : 'none' }}>
-            <p className="text-blue-200 text-3xl text-center font-bold mx-4 my-3">{item.name}</p>
-            <p class="justify-center text-xl font-semibold text-center pt-2">Tiempo Restante : {minutes.toString().padStart(2, '0')} : {seconds}</p>
+            <p className=" text-blue-200 text-3xl text-center font-bold mx-4 my-3">{item.name}</p>
+            <p class=" text-white justify-center text-xl font-semibold text-center pt-2">Tiempo Restante : {minutes.toString().padStart(2, '0')} : {seconds}</p>
           </div>
         ))}
       </div>
@@ -90,8 +90,7 @@ export default function RandomTasks() {
   return (
     <>
    
-   <div className="bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center gap-3 mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline  flex-col items-center h-auto">
->>>>>>> Stashed changes
+   <div className=" text-white bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col items-center">
         <Navigations />
         <h1 className="text-2xl text-center pt-14 mt-5 font-bold ">Tareas Espontaneas</h1>
         <p className="text-lg text-center mx-8 px-3 my-4 font-semibold">Cumpli con los descansos para mantener la concentracion</p>
@@ -117,13 +116,9 @@ export default function RandomTasks() {
             </div>
           )}
         </div>
-<<<<<<< Updated upstream
+      {/* <Footer buttonAppear={false}
+      setFormVisible={setFormVisible}/> */}
       </div>
-      <Footer />
-=======
-      <Footer buttonAppear={false}
-      setFormVisible={setFormVisible}/>
->>>>>>> Stashed changes
     </>
   );
 }
