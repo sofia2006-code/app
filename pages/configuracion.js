@@ -28,7 +28,7 @@ export default function Configuracion() {
     }
 
     const handlerredirectTasks = () =>{
-        window.location.href="http://localhost:3000/randomtasks"
+        window.location.href="http://localhost:3000/tasks"
     }
 
     const handlerredirectayuda = () =>{

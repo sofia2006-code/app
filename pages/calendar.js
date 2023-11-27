@@ -1,6 +1,5 @@
 import react from 'react';
 import Navigations from '../components/navigations';
-import style from '../Styles/calendario.module.css';
 
 
 export default function calendar(){
