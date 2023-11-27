@@ -149,7 +149,7 @@ export default function Home() {
       <script async defer src="https://accounts.google.com/gsi/client" onload={gisLoaded} />
       <Navigations openConf={false} />
       <h1 className="font-medium text-5xl px-8 py-10 text-white"> Ingresá a tu cuenta </h1>
-      <LoginBtn> <FcGoogle className='mr-2' /></LoginBtn>
+      <LoginBtn> </LoginBtn>
       <button className=" px-7 py-2 text-lg rounded-lg bg-gray-400 bg-opacity-30 text-stone-200 flex items-center
       font-normal shadow-inner"> <BsFillLockFill className="mr-2" />Ingresa con contraseña</button>
       <div className="flex items-center w-full mt-10">
@@ -157,6 +157,9 @@ export default function Home() {
         <span className="mx-4 text-white font-semibold text-xl">o</span>
         <hr className="flex-grow border-t border-gray-400" />
       </div>
+      <button className="mt-14 px-12 my-14 py-3 text-lg font-semibold rounded-full bg-[#DF6B00] text-white">
+        Conoce mas
+      </button>
       <div className="absolute bottom-0 right-0">
         <img src="/imagenes/woman.png" alt="" />
       </div>

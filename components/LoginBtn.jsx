@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { FcGoogle } from "react-icons/fc";
 import {Image} from 'next/image';
 
 /*const SignInbutton = () => {
@@ -55,7 +56,7 @@ export default function LoginBtn() {
         <div className="text-white text-xl" >Not signed in</div> 
         
         <button className="r my-8 px-10 py-2 text-lg rounded-lg bg-gray-400 bg-opacity-30 text-stone-200  flex items-center
-      font-normal shadow-inner" onClick={() => signIn()}>Ingresa con Google</button>
+      font-normal shadow-inner" onClick={() => signIn()} ><FcGoogle className="mr-2"/>Ingresa con Google</button>
       </>
     )
   }
