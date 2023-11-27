@@ -47,7 +47,7 @@ export default function Home() {
     
 
     <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col items-center">
-    <Navigations openConf={true}/>
+     <Navigations openConf={true}/>
     <div>
       <NavBar className="mt-5"></NavBar>
     </div>
