@@ -3,6 +3,8 @@ import React from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { FcGoogle } from "react-icons/fc";
 import {Image} from 'next/image';
+import { useRouter } from 'next/router';
+import { redirect } from "react-router-dom";
 
 /*const SignInbutton = () => {
     const { data: session } = useSession();
@@ -29,13 +31,10 @@ export default SignInbutton;*/
 export default function LoginBtn() {
     const { data: session } = useSession()
 
-    const handlerRedirectLogin = async () => {
-      window.location.href = 'https://cofocus.vercel.app/home';
-    };
-
     if (session) {
-      window.location.href = 'https://cofocus.vercel.app/home';
+      return redirect("/home");
       /*return (
+        Prueba de deployeo
         <>
           <img
           src={session.user.image}
@@ -51,6 +50,7 @@ export default function LoginBtn() {
         </>
       )*/
     }
+    else{
     return (
       <>
         <div className="text-white text-xl" >Not signed in</div> 
@@ -59,5 +59,6 @@ export default function LoginBtn() {
       font-normal shadow-inner" onClick={() => signIn()} ><FcGoogle className="mr-2"/>Ingresa con Google</button>
       </>
     )
+    }
   }
   
