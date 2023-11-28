@@ -204,8 +204,9 @@ export default function Tasks() {
                   taskObj.class === "A" && (
                     <div
                       className="bg-white w-full rounded-xl pt-2 pb-0 mt-2 "
-                      id="ClaseB"
-                    >
+                      id="ClaseA"
+                      key={`classA_${index}`} // Unique key added here
+                     >
                       <div className="ml-5 mb-0 " key={index}>
                         {" "}
                         {/* Added margin left and bottom */}
@@ -240,6 +241,8 @@ export default function Tasks() {
                   <div
                     className="bg-white rounded-xl pt-2 pb-0 mt-2 "
                     id="ClaseB"
+                    key={`classB_${index}`} // Unique key added here
+
                   >
                     <div className="ml-5 mb-0 " key={index}>
                       {" "}
@@ -273,7 +276,8 @@ export default function Tasks() {
                   taskObj.class === "C" && (
                     <div
                       className="bg-white rounded-xl pt-2 pb-0 mt-2 "
-                      id="ClaseB"
+                      id="ClaseC"
+                      key={`classC_${index}`} // Unique key added here
                     >
                       <div className="ml-5 mb-0 " key={index}>
                         {" "}
