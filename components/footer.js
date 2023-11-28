@@ -19,11 +19,11 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
     }
 
     const handlerRedirecttasks = () =>{
-      window.location.href="http://localhost:3000/tasks"
+      window.location.href="https://cofocus.vercel.app/tasks"
     }
 
     const handlerRedirectHome = () =>{
-      window.location.href="http://localhost:3000/home"
+      window.location.href="https://cofocus.vercel.app/home"
     }
 
     
