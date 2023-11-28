@@ -13,7 +13,7 @@ export default function Home() {
 
   
   useEffect(() => {
-    fetch('http://localhost:3000/api/toDoList', {
+    fetch('https://cofocus.vercel.app/api/toDoList', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Home() {
     
 
     <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col items-center">
-     <Navigations openConf={true}/>
+    <Navigations openConf={true}/>
     <div>
       <NavBar className="mt-14"></NavBar>
     </div>

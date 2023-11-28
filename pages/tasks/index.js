@@ -31,7 +31,7 @@ export default function Tasks() {
   */
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/toDoList", {
+    fetch("https://cofocus.vercel.app/api/toDoList", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

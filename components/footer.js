@@ -11,11 +11,11 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
   const { data: session } = useSession()
 
     const handlerredirectcalendar = () =>{
-        window.location.href="http://localhost:3000/calendar"
+        window.location.href="https://cofocus.vercel.app/calendar"
     }
 
     const handlerredirectTimer = () =>{
-        window.location.href="http://localhost:3000/pomodoro"
+        window.location.href="https://cofocus.vercel.app/pomodoro"
     }
 
     const handlerRedirecttasks = () =>{
