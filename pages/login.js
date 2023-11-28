@@ -141,7 +141,7 @@ async function listUpcomingEvents() {
   // document.getElementById('content').innerText = output;
 }
 const handleredirectinfo = () =>{
-  window.location.href="http://localhost:3000/conocemas"
+  window.location.href="https://cofocus.vercel.app/conocemas"
 }
 
 export default function Home() {
