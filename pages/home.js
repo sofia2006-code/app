@@ -6,6 +6,8 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import {Image} from 'next/image';
 import NavBar from "../components/NavBar";
 import Navigations from "../components/navigations";
+import Link from 'next/link';
+
 
 export default function Home() {
   const [tasksArray, setTasksArray] = useState([]);
