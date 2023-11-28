@@ -4,8 +4,8 @@ import React, { useState, useEffect, Fragment } from "react";
 
 
 const defaultTasks = [
-  { name: 'Toma nota de las palabras clave', displayTime: 3000 },
-  { name: 'Hace un cuadro Conceptual con palabras clave', displayTime: 5000 },
+  { name: 'Toma nota de las palabras clave', displayTime: 1000000 },
+  { name: 'Hace un cuadro Conceptual con palabras clave', displayTime: 500000 },
   { name: 'Mira al profe como habla', displayTime: 7000 },
   { name: 'Hacer preguntas! no tengas verguenza!!!', displayTime: 4000 }
 ];
