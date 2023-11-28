@@ -4,8 +4,6 @@ import { FiHome } from "react-icons/fi";
 import { LuCalendarRange } from "react-icons/lu";
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-import { Link } from "react-router-dom";
-
 
 
 const Footer = ({buttonAppear=false, setFormVisible}) => {
@@ -21,7 +19,7 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
     }
 
     const handlerRedirecttasks = () =>{
-        window.location.href="https://cofocus.vercel.app/tasks";
+      window.location.href="https://cofocus.vercel.app/tasks";
     }
 
     const handlerRedirectHome = () =>{
@@ -33,15 +31,15 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
   return (
     <div className="position-fixed bottom-0 left-0 w-full  p-4 flex justify-around items-center text-[#B9B5B5] bg-blue-950">
       <div className="footer-item flex flex-col items-center">
-        <Link to="/calendar">
+        <button onClick={handlerredirectcalendar}>
           <LuCalendarRange size={24} />
-        </Link>
+        </button>
         <p className="text-sm">Calendario</p>
       </div>
       <div className="footer-item flex flex-col items-center">
-        <Link to="/pomodoro">
+        <button onClick={handlerredirectTimer}>
           <FaClock size={24} />
-        </Link>
+        </button>
         <p className="text-sm">Timer</p>
       </div>
       {buttonAppear && (
@@ -52,15 +50,15 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
     
       
       <div className="footer-item flex flex-col items-center">
-        <Link to="/tasks">
-           <FaTasks size={24} />
-        </Link>
+        <button onClick={handlerRedirecttasks}>
+          <FaTasks size={24} />
+        </button>
         <p className="text-sm">Tareas</p>
       </div>
       <div className="footer-item flex flex-col items-center">
-        <Link to="/home">
+        <button onClick={handlerRedirectHome}>
           <FiHome size={24} />
-        </Link>
+        </button>
         <p className="text-sm">Home</p>
       </div>
     </div>
