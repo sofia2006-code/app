@@ -31,13 +31,13 @@ export default function Home() {
     },
 
     {
-      value: "Short Break",
+      value: "Pausa",
       setter: setShortBreak,
       defaultValue: 1,
     },
 
     {
-      value: "Long Break",
+      value: "Recreo",
       setter: setLongBreak,
       defaultValue: 10,
     }
@@ -150,8 +150,8 @@ export default function Home() {
   return (
     <div className="bg-gray-900 min-h-screen font-inter">
       <div className="max-w-2xl min-h-screen mx-auto">
-        <Navigations setOpenSettings={setOpenSettings}
-          openConf={true} />
+        <Navigations 
+          openConf={true}/>
         <Timer stage={stage}
           switchStage={switchStage}
           getTickingTime={getTickingTime}
@@ -160,7 +160,8 @@ export default function Home() {
           startTimer={startTimer}
           isTimeUp={isTimeUp}
           muteAlarm={muteAlarm}
-          reset={reset} />
+          reset={reset} 
+          setOpenSettings={setOpenSettings}/>
         <Alarm ref={alarmRef} />
         <PomoSettings openSettings={openSettings}
           setOpenSettings={setOpenSettings}

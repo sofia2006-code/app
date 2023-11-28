@@ -6,7 +6,7 @@ export default function ConoceMas() {
     return (
       <>
         <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col justify-start items-center text-white">
-          <Navigations openConf={true} />
+          <Navigations openConf={true} openArrow={true}/>
           <section id="informacion" className="relative">
             <div id="info1" className="container flex flex-col items-center py-10 md:flex-row">
               <div className="flex flex-col items-center md:items-start md:w-1/2 md:pl-10">

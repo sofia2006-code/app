@@ -9,8 +9,8 @@ export default function LoginBtn() {
     return(
         <>
             <div>
-                <h2 className="absolute font-semibold top-9 left-20 h-22 w-120">{session?.user?.name || 'Nombre de Usuario'}</h2>
-                <img class="rounded-3xl absolute top-7 left-4 h-10 w-10" src={session?.user?.image}></img>
+                <h2 className="absolute font-semibold top-24 mt-2 text-white  left-20 h-12 w-120">{session?.user?.name || 'Nombre de Usuario'}</h2>
+                <img class="rounded-3xl absolute top-24  left-4 h-10 w-10" src={session?.user?.image}></img>
                 <button onClick={() => signOut()}>Sign out</button>
             </div>
           

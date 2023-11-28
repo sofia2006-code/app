@@ -92,88 +92,28 @@ export default function Tasks() {
     setSelectedClass(e.target.value);
   };
 
-  return (    <div className="font-Quattrocento bg-gradient-to-b from-[#1D1261] to-[#1B153F] text-white h-screen">
-      <Navigations openConf={false}/>
-      <h1 className="grid justify-items-center text-xl mt-3"> Mis tareas  </h1>
+  return (
+    <div>
+      <script src="../tasks.js"></script>
+      <h1> To-do List in Next.js </h1>
       <form onSubmit={inputSubmit}>
-      
+        <input type="text" value={task} onChange={inputChange} placeholder="Enter a task" id="NombreTarea" />
+        <button onClick={submitTask} type="submit">Add task</button>
       </form>
-{/* //       <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className="text-black">
-//         <option value="Seleccionar Clase">Seleccionar Clase</option>
-//         <option value="A">Clase A</option>
-//         <option value="B">Clase B</option>
-//         <option value="C">Clase C</option>
-//       </select>
-//       <br/>
-//       <input className="text-black" onChange={dateChange} type="date"/>
+      <ul>
+            <button onClick={() => handleDelete(index)}>Delete</button>
+          </ul>
+        <select id="SelectClases">
+          <option value="Seleccionar Clase">Seleccionar Clase</option>
+          <option value="A">Clase A</option>
+          <option value="B">Clase B</option>
+          <option value="C">Clase C</option>
+        </select>
 
+        <p>Clase A</p> <p id="ClaseA"></p> <br/>
+        <p>Clase B</p> <p id="ClaseB"></p> <br/>
+        <p>Clase C</p> <p id="ClaseC"></p> <br/>
 
-// =======
-       */}
-      {/* Render tasks and delete button here */}
-      <div>
-        <p className="text-2xl text-[#DF6B00] font-Quattrocento-bold">A</p>
-        <p id="ClaseA">
-
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'A' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
-                <br />
-              </span>
-            )
-          ))}
-        </p>
-      </div>
-      <div>
-        <p class="text-2xl text-blue-300">B</p>
-        <p id="ClaseB">
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'B' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
-                <br />
-              </span>
-            )
-          ))}
-        </p>
-      </div>
-      <div>
-        <p class="text-2xl text-blue-500">C</p>
-        <p id="ClaseC">
-          {tasksArray.map((taskObj, index) => (
-            taskObj.class === 'C' && (
-              <span key={index}>
-                {taskObj.task}
-                <button onClick={() => handleDelete(index)}>Delete</button>
-                <br />
-              </span>
-            )
-          ))}
-        </p>
-        <div className=" bg-gradient-to-b from-[#2200FF] to-[#7795ff] grid align-items-center gap-3 mr-8 ml-8 my-10 py-4 shadow-inner appearance-none border-none rounded  px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline">
-          <div className="justify-start">
-            <p className="text-xl">Nombre</p>
-            <input className="text-white rounded-sm text-lg bg-[#3B355A] shadow-inner py-1 mx-full mt-3" type="text" value={task} onChange={inputChange} placeholder="Agregar tarea" id="NombreTarea" />
-
-              <p class="mt-3 text-xl">Prioridad</p>
-              <select id="SelectClases" onChange={handleClassChange} value={selectedClass} className=" justify-start text-gray-400 mt-3 rounded-sm text-lg bg-[#3B355A] shadow-inner py-2 mx-auto pr-6">
-                <option class="text-sm" value="Seleccionar Clase">Seleccionar Clase</option>
-                <option class="text-sm"value="A">Clase A</option>
-                <option class="text-sm"value="B">Clase B</option>
-                <option class="text-sm"value="C">Clase C</option>
-              </select>
-
-          </div>
-        <button onClick={submitTask} type="submit" class="bg-white text-blue-700 text-center align-items-center rounded-md py-2 mt-3 mx-auto px-4">Crear Nueva Tarea</button>
-      </div>
-      
-        
-    {/* onClick={handleAddButtonClick} */}
-      </div>
-      
     </div>
   );
 }

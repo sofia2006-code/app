@@ -27,7 +27,7 @@ function PomoSettings({
           }}
         >
           <div className="text-gray-400 flex justify-between items-center">
-            <h1 className="uppercase font-bold tracking-wider">Time setting</h1>
+            <h1 className="uppercase font-bold tracking-wider">Ajustar Tiempo</h1>
             <FiX className="text-2xl" cursor-pointer onClick={() => setOpenSettings(false)} />
           </div>
           {/* linea simple */}
@@ -38,7 +38,7 @@ function PomoSettings({
               return (
                 <div key={index}>
                   <div>
-                    <h1 className="text-gray-400 text-small">{input.value}</h1>
+                    <h1 className="text-gray-400 text-small mb-3">{input.value}</h1>
                     <input
                       // default el de arriba
                       defaultValue={input.defaultValue}
@@ -56,7 +56,7 @@ function PomoSettings({
           </div>
           <button className="bg-orange-600 uppercase w-full mt-5 text-white rounded py-2"
             onClick={updateTimeDefaultValue}>
-            Save
+            Guardar
           </button>
         </div>
       </div>

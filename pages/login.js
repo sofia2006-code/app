@@ -140,6 +140,9 @@ async function listUpcomingEvents() {
     'Events:\n');
   // document.getElementById('content').innerText = output;
 }
+const handleredirectinfo = () =>{
+  window.location.href="http://localhost:3000/conocemas"
+}
 
 export default function Home() {
   return (
@@ -157,7 +160,7 @@ export default function Home() {
         <span className="mx-4 text-white font-semibold text-xl">o</span>
         <hr className="flex-grow border-t border-gray-400" />
       </div>
-      <button className="mt-14 px-12 my-14 py-3 text-lg font-semibold rounded-full bg-[#DF6B00] text-white">
+      <button className="mt-14 px-12 my-14 py-3 text-lg font-semibold rounded-full bg-[#DF6B00] text-white" onClick={handleredirectinfo}>
         Conoce mas
       </button>
       <div className="absolute bottom-0 right-0">

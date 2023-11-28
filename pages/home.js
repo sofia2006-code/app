@@ -11,7 +11,7 @@ export default function Home() {
   const [tasksArray, setTasksArray] = useState([]);
   const { data: session } = useSession()
 
-
+  
   useEffect(() => {
     fetch('http://localhost:3000/api/toDoList', {
       method: "GET",
@@ -49,15 +49,20 @@ export default function Home() {
     <div className="bg-gradient-to-b from-[#1D1261] to-[#1B153F] min-h-screen flex flex-col items-center">
      <Navigations openConf={true}/>
     <div>
-      <NavBar className="mt-5"></NavBar>
+      <NavBar className="mt-14"></NavBar>
     </div>
-      {tasksArray.map((taskObj, index) => (
+    <div className="px-8 pt-14 mt-12 pb-3">
+      <img src="/imagenes/COFOCUS.png" alt=""/>
+    </div>
+    <button className=" mt-10 px-7 py-2 text-lg rounded-lg bg-blue-800 bg-opacity-30 text-stone-200 flex items-center
+      font-normal shadow-xl "> Iniciar Tareas Espontaneas</button>
+      {/* {tasksArray.map((taskObj, index) => (
         <div className="bg-white rounded-xl p-4 my-2 flex items-center" key={index}>
           <div className="text-orange-700 font-bold">{taskObj.class}</div>
           <div className="text-slate-600">{taskObj.date}</div>
           <div className="text-slate-800 font-bold font-Quattrocento text-2xl ml-4">{taskObj.task}</div>
         </div>
-      ))}
+      ))} */}
       <Footer />
     </div>
     

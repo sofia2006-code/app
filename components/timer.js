@@ -1,5 +1,6 @@
 import React from 'react'
 import { FiBellOff } from "react-icons/fi";
+import { IoIosTimer } from 'react-icons/io';
 
 export default function Timer({
   stage,
@@ -10,8 +11,9 @@ export default function Timer({
   startTimer,
   isTimeUp,
   muteAlarm,
-  reset }) {
-  const options = ["Pomodoro", "Short Break", "Long Break"]
+  reset,
+  setOpenSettings }) {
+  const options = ["Pomodoro", "Pausa", "Recreo"]
   return (
     <div className="w-10/12 mx-auto pt-5 text-white flex flex-col justify-center items-center mt-10">
       <div className="flex gap-5 items-centerflex-col justify-center align-items">
@@ -38,7 +40,7 @@ export default function Timer({
       <div className="flex gap-2 items-center">
         <button className=" px-16 py-2 text-2xl rounded-md bg-white text-blue-500 uppercase font-bold"
           onClick={startTimer}>
-          {ticking ? "Stop" : "Start"}
+          {ticking ? "Pausa" : "Empezar"}
           {/*  if ticking, cambia el titulo */}
         </button>
 
@@ -52,10 +54,15 @@ export default function Timer({
         {ticking && (
           <button className=" px-16 py-2 text-2xl rounded-md bg-gray-500 bg-opacity-30 text-white 
             uppercase font-bold p-1" onClick={reset}>
-            RESET
+            REINICIAR
           </button>
         )}
+        
       </div>
+      <IoIosTimer
+          className="text-5xl cursor-pointer mt-5"
+          onClick={() => setOpenSettings(prevValue => !prevValue)}
+        />
     </div>
   )
 }
