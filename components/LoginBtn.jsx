@@ -30,11 +30,11 @@ export default function LoginBtn() {
     const { data: session } = useSession()
 
     const handlerRedirectLogin = async () => {
-      window.location.href = 'http://localhost:3000/home';
+      window.location.href = 'https://cofocus.vercel.app/home';
     };
 
     if (session) {
-      window.location.href = 'http://localhost:3000/home';
+      window.location.href = 'https://cofocus.vercel.app/home';
       /*return (
         <>
           <img

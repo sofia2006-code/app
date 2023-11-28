@@ -15,15 +15,15 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
     }
 
     const handlerredirectTimer = () =>{
-        window.location.href="https://cofocus.vercel.app/pomodoro"
+        window.location.href="https://cofocus.vercel.app/pomodoro";
     }
 
     const handlerRedirecttasks = () =>{
-      window.location.href="https://cofocus.vercel.app/tasks"
+      window.location.href="https://cofocus.vercel.app/tasks";
     }
 
     const handlerRedirectHome = () =>{
-      window.location.href="https://cofocus.vercel.app/home"
+      window.location.href="https://cofocus.vercel.app/home";
     }
 
     
