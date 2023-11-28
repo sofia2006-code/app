@@ -30,13 +30,13 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
   return (
     <div className="position-fixed bottom-0 left-0 w-full  p-4 flex justify-around items-center text-[#B9B5B5] bg-blue-950">
       <div className="footer-item flex flex-col items-center">
-        <Link to="/calendar">
+        <Link href="/calendar">
           <LuCalendarRange size={24} />
         </Link>
         <p className="text-sm">Calendario</p>
       </div>
       <div className="footer-item flex flex-col items-center">
-        <Link to="/pomodoro">
+        <Link href="/pomodoro">
           <FaClock size={24} />
         </Link>
         <p className="text-sm">Timer</p>
@@ -49,13 +49,13 @@ const Footer = ({buttonAppear=false, setFormVisible}) => {
     
       
       <div className="footer-item flex flex-col items-center">
-        <Link to="/tasks">
+        <Link href="/tasks">
           <FaTasks size={24} />
         </Link>
         <p className="text-sm">Tareas</p>
       </div>
       <div className="footer-item flex flex-col items-center">
-        <Link to="/home">
+        <Link href="/home">
           <FiHome size={24} />
         </Link>
         <p className="text-sm">Home</p>
