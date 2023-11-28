@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Navigations from "../../components/navigations";
 import Footer from "../../components/footer";
+import Navigations from "../../components/navigations";
+import React, { useState, useEffect, Fragment } from "react";
+
 
 const defaultTasks = [
   { name: 'Toma nota de las palabras clave', displayTime: 3000 },
@@ -118,8 +119,7 @@ export default function RandomTasks() {
             </div>
           )}
         </div>
-      {/* <Footer buttonAppear={false}
-      setFormVisible={setFormVisible}/> */}
+      <Footer buttonAppear={false}/>
       </div>
     </>
   );
