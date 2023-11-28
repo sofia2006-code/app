@@ -51,6 +51,7 @@ export default function LoginBtn() {
         </>
       )*/
     }
+    else{
     return (
       <>
         <div className="text-white text-xl" >Not signed in</div> 
@@ -60,4 +61,4 @@ export default function LoginBtn() {
       </>
     )
   }
-  
+}
