@@ -12,27 +12,27 @@ export default function Configuracion() {
 
     const handleredirect = () =>{
         signOut();
-        window.location.href="http://localhost:3000/login"
+        window.location.href="https://cofocus.vercel.app/login"
     }
 
     const handlerredirectcalendar = () =>{
-        window.location.href="http://localhost:3000/calendar"
+        window.location.href="https://cofocus.vercel.app/calendar"
     }
 
     const handlerredirectTimer = () =>{
-        window.location.href="http://localhost:3000/pomodoro"
+        window.location.href="https://cofocus.vercel.app/pomodoro"
     }
 
     const handlerredirectrandomTask = () =>{
-        window.location.href="http://localhost:3000/randomtasks"
+        window.location.href="https://cofocus.vercel.app/randomtasks"
     }
 
     const handlerredirectTasks = () =>{
-        window.location.href="http://localhost:3000/tasks"
+        window.location.href="https://cofocus.vercel.app/tasks"
     }
 
     const handlerredirectayuda = () =>{
-        window.location.href="http://localhost:3000/conocemas"
+        window.location.href="https://cofocus.vercel.app/conocemas"
     }
 
     
