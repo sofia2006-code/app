@@ -211,22 +211,15 @@ export default function Tasks() {
                         {" "}
                         {/* Added margin left and bottom */}
                         <div className="text-slate-600">{taskObj.date}</div>
-                        <div className="flex flex-col-2 justify-items-stretch">
+                        <div className="flex flex-col-2 justify-between ">
                           <div className="text-slate-800 font-bold font-Quattrocento text-2xl">
                             {taskObj.task}
                           </div>
-                          <div>
-                            <button
-                              className="mr-6 justify-between"
-                              onClick={() => handleDelete("A", taskObj.task)}
-                            >
-                              <RxCrossCircled
-                                className=""
-                                color="black"
-                                size="35"
-                              />
-                            </button>{" "}
-                          </div>
+                          <button
+                            onClick={() => handleDelete("A", taskObj.task)}
+                          >
+                            <RxCrossCircled color="black" size="35" />
+                          </button>{" "}
                         </div>
                         <br />
                       </div>
@@ -252,17 +245,13 @@ export default function Tasks() {
                       {" "}
                       {/* Added margin left and bottom */}
                       <div className="text-slate-600">{taskObj.date}</div>
-                      <div className="mr-6 justify-between">
+                      <div className="flex flex-col-2 justify-between ">
                         <div className="text-slate-800 font-bold font-Quattrocento text-2xl">
                           {taskObj.task}
                         </div>
-                        <div className="flex flex-col-2 justify-items-stretch">
-                          <button
-                            onClick={() => handleDelete("B", taskObj.task)}
-                          >
-                            <RxCrossCircled color="black" size="35" />
-                          </button>{" "}
-                        </div>
+                        <button onClick={() => handleDelete("B", taskObj.task)}>
+                          <RxCrossCircled color="black" size="35" />
+                        </button>{" "}
                       </div>
                       <br />
                     </div>
@@ -287,7 +276,7 @@ export default function Tasks() {
                         {" "}
                         {/* Added margin left and bottom */}
                         <div className="text-slate-600">{taskObj.date}</div>
-                        <div className="flex flex-col-2 justify-between mr-6 ">
+                        <div className="flex flex-col-2 justify-between ">
                           <div className="text-slate-800 font-bold font-Quattrocento text-2xl">
                             {taskObj.task}
                           </div>
