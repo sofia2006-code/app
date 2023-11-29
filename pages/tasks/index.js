@@ -206,7 +206,7 @@ export default function Tasks() {
                       className="bg-white w-full rounded-xl pt-2 pb-0 mt-2 "
                       id="ClaseA"
                       key={`classA_${index}`} // Unique key added here
-                     >
+                    >
                       <div className="ml-5 mb-0 " key={index}>
                         {" "}
                         {/* Added margin left and bottom */}
@@ -217,9 +217,14 @@ export default function Tasks() {
                           </div>
                           <div>
                             <button
+                              className="mr-6 justify-between"
                               onClick={() => handleDelete("A", taskObj.task)}
                             >
-                              <RxCrossCircled color="black" size="35" />
+                              <RxCrossCircled
+                                className=""
+                                color="black"
+                                size="35"
+                              />
                             </button>{" "}
                           </div>
                         </div>
@@ -242,13 +247,12 @@ export default function Tasks() {
                     className="bg-white rounded-xl pt-2 pb-0 mt-2 "
                     id="ClaseB"
                     key={`classB_${index}`} // Unique key added here
-
                   >
                     <div className="ml-5 mb-0 " key={index}>
                       {" "}
                       {/* Added margin left and bottom */}
                       <div className="text-slate-600">{taskObj.date}</div>
-                      <div className="">
+                      <div className="mr-6 justify-between">
                         <div className="text-slate-800 font-bold font-Quattrocento text-2xl">
                           {taskObj.task}
                         </div>
@@ -283,7 +287,7 @@ export default function Tasks() {
                         {" "}
                         {/* Added margin left and bottom */}
                         <div className="text-slate-600">{taskObj.date}</div>
-                        <div className="flex flex-col-2 justify-items-stretch">
+                        <div className="flex flex-col-2 justify-between mr-6 ">
                           <div className="text-slate-800 font-bold font-Quattrocento text-2xl">
                             {taskObj.task}
                           </div>
