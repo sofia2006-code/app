@@ -7,14 +7,14 @@ import { IoIosTimer } from "react-icons/io";
 export default function Navigations({setOpenSettings, openConf, openArrow}) {
 
   const handlerredirectconfig = () =>{
-    window.location.href="http://localhost:3000/configuracion"
+    window.location.href="https://cofocus.vercel.app/configuracion"
 }
 const handleredirecthome = () =>{
-  window.location.href="http://localhost:3000/home"
+  window.location.href="https://cofocus.vercel.app/home"
 }
 
 const handleredirectlogin = () =>{
-  window.location.href="http://localhost:3000/login"
+  window.location.href="https://cofocus.vercel.app/login"
 }
   return (
       <nav className="pt-3 text-white flex justify-between w-11/12 mx-auto qcy4 mb-5">
